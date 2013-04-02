@@ -18,24 +18,29 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 @interface WeatherViewController ()
 {
     WeatherManager *weatherManager;
+    WeatherItem *currentWeatherItem;
+    
+    int indexOfCurrentTempString;
+    NSArray *colorsArray;
+    
+    NSMutableArray *topSmallRectangleViews;
+    NSMutableArray *bottomSmallRectangleViews;
+    
+    BOOL isOpen;
+    BOOL soundsEnabled;
+    BOOL isChangingIndex;
+    
+    // Views
+    UILabel *currentTempLabel;
+    UIScrollView *largeRectangleScrollView;
+    DetailView *detailView;
+    DrawerView *drawerView;
+    
+    UIButton *infoButton;
 }
 @end
 
 @implementation WeatherViewController
-
-@synthesize indexOfCurrentTempString;
-@synthesize colorsArray = _colorsArray;
-@synthesize largeRectangleScrollView = _largeRectangleScrollView;
-@synthesize topSmallRectangleViews = _topSmallRectangleViews;
-@synthesize bottomSmallRectangleViews = _bottomSmallRectangleViews;
-@synthesize open = _open;
-@synthesize isChangingIndex = _isChangingIndex;
-@synthesize infoButton = _infoButton;
-@synthesize detailView = _detailView;
-@synthesize currentWeatherItem = _currentWeatherItem;
-@synthesize currentTempLabel = _currentTempLabel;
-@synthesize drawerView = _drawerView;
-@synthesize soundsEnabled = _soundsEnabled;
 
 -(id)init
 {
@@ -44,10 +49,10 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     // Get a reference to the WeatherManager singleton
     weatherManager = [WeatherManager sharedManager];
     
-    self.colorsArray = [NSArray arrayWithObjects:UIColorFromRGB(0xdb502f), UIColorFromRGB(0xd0632b), UIColorFromRGB(0xd4822c), UIColorFromRGB(0xddac46), UIColorFromRGB(0xe0ca67), UIColorFromRGB(0xe2ce9c), UIColorFromRGB(0xd7dbda), UIColorFromRGB(0xb6cad5), UIColorFromRGB(0x59bbc6), UIColorFromRGB(0x01a9cd), UIColorFromRGB(0x018bbc), UIColorFromRGB(0x0078bd), UIColorFromRGB(0x0068b4), nil];
+    colorsArray = [NSArray arrayWithObjects:UIColorFromRGB(0xdb502f), UIColorFromRGB(0xd0632b), UIColorFromRGB(0xd4822c), UIColorFromRGB(0xddac46), UIColorFromRGB(0xe0ca67), UIColorFromRGB(0xe2ce9c), UIColorFromRGB(0xd7dbda), UIColorFromRGB(0xb6cad5), UIColorFromRGB(0x59bbc6), UIColorFromRGB(0x01a9cd), UIColorFromRGB(0x018bbc), UIColorFromRGB(0x0078bd), UIColorFromRGB(0x0068b4), nil];
     
-    self.topSmallRectangleViews = [NSMutableArray array];
-    self.bottomSmallRectangleViews = [NSMutableArray array];    
+    topSmallRectangleViews = [NSMutableArray array];
+    bottomSmallRectangleViews = [NSMutableArray array];    
     return self;
 }
 
@@ -60,148 +65,126 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 {
     [super viewDidLoad];
     
-    self.soundsEnabled = YES;
+    soundsEnabled = YES;
 
-    self.isChangingIndex = NO;
+    isChangingIndex = NO;
     indexOfCurrentTempString = [weatherManager currentWeatherItem].indexForWeatherMap;
     self.view.backgroundColor = [UIColor blackColor];
     
     //Top Rectangles, above the currentTemperature Rectangle
     CGFloat y =0;
     for (float i = 0; i < indexOfCurrentTempString; i++) {
-        UIColor *color = [self.colorsArray     objectAtIndex:i];
+        UIColor *color = [colorsArray objectAtIndex:i];
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y, 320, kheightOfSmallRectangles)];
         view.backgroundColor = color;
         y+= view.bounds.size.height;
         
         [self.view addSubview:view];
-        [self.topSmallRectangleViews addObject:view];
+        [topSmallRectangleViews addObject:view];
     }
     
     //CurrentTemperature ScrollView Rectangle
-    UIColor *color = [self.colorsArray objectAtIndex:indexOfCurrentTempString];
+    UIColor *color = [colorsArray objectAtIndex:indexOfCurrentTempString];
         
-    self.largeRectangleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, 320, 220)];
-    self.largeRectangleScrollView.pagingEnabled = YES;
-    self.largeRectangleScrollView.showsHorizontalScrollIndicator = NO;
+    largeRectangleScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, y, 320, 220)];
+    largeRectangleScrollView.pagingEnabled = YES;
+    largeRectangleScrollView.showsHorizontalScrollIndicator = NO;
     
-    self.largeRectangleScrollView.contentSize = CGSizeMake(640, 220);
-    self.largeRectangleScrollView.backgroundColor = color;
-    y = self.largeRectangleScrollView.frame.size.height +y;
+    largeRectangleScrollView.contentSize = CGSizeMake(640, 220);
+    largeRectangleScrollView.backgroundColor = color;
+    y = largeRectangleScrollView.frame.size.height +y;
 
     //Current Temperature Label 
-    self.currentTempLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 180, 160)];
-    self.currentTempLabel.font = [UIFont fontWithName:@"steelfish" size:140];
+    currentTempLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 180, 160)];
+    currentTempLabel.font = [UIFont fontWithName:@"steelfish" size:140];
     
     NSString *string= [weatherManager currentWeatherItem].weatherCurrentTemp;
-    self.currentTempLabel.text =[NSString stringWithFormat:@"%@°", string];
-    self.currentTempLabel.backgroundColor = [UIColor clearColor];
-    self.currentTempLabel.textColor = [UIColor whiteColor];
-    [self.largeRectangleScrollView addSubview:self.currentTempLabel];
+    currentTempLabel.text =[NSString stringWithFormat:@"%@°", string];
+    currentTempLabel.backgroundColor = [UIColor clearColor];
+    currentTempLabel.textColor = [UIColor whiteColor];
+    [largeRectangleScrollView addSubview:currentTempLabel];
     
     //Picture of Weather 
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(self.currentTempLabel.bounds.size.width, 30 , 120, 120)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(currentTempLabel.bounds.size.width, 30 , 120, 120)];
     [imageView setImage:[UIImage imageNamed:@"sun.png"]];
-    [self.largeRectangleScrollView addSubview:imageView];
+    [largeRectangleScrollView addSubview:imageView];
     
     //Gesture Regognizer for more info pane;
     UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRecognizedOnLargeRectangeView:)];
     tapRecognizer.delegate = self;
-    [self.largeRectangleScrollView addGestureRecognizer:tapRecognizer];
+    [largeRectangleScrollView addGestureRecognizer:tapRecognizer];
 
-    self.drawerView = [[DrawerView alloc] initWithFrame:CGRectMake(0, 170, 320, 50)];
-    [self.largeRectangleScrollView addSubview:self.drawerView];
-    self.drawerView.backgroundColor = color;
+    drawerView = [[DrawerView alloc] initWithFrame:CGRectMake(0, 170, 320, 50)];
+    [largeRectangleScrollView addSubview:drawerView];
+    drawerView.backgroundColor = color;
     [self updateDrawerView];
     
-    
-    self.detailView = [[DetailView alloc] initWithFrame:CGRectMake(320, 0, 320, 220)];
-    //self.detailView.item = self.currentWeatherItem ;
-    self.detailView.backgroundColor = color;
+    detailView = [[DetailView alloc] initWithFrame:CGRectMake(320, 0, 320, 220)];
+    detailView.backgroundColor = color;
     
     [self updateDetailView];    
-    [self.largeRectangleScrollView addSubview:self.detailView];
+    [largeRectangleScrollView addSubview:detailView];
     
-        
-    [self.view addSubview:self.largeRectangleScrollView];
+    [self.view addSubview:largeRectangleScrollView];
     
     //Bottom rectangles below our current Temperature Rectangle 
     for (float i = indexOfCurrentTempString +1; i < 13; i++) {
-        UIColor *color = [self.colorsArray     objectAtIndex:i];
+        UIColor *color = [colorsArray objectAtIndex:i];
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y-kOffsetForAnimationWhenTapped, 320, kheightOfSmallRectangles)];
         view.backgroundColor = color;
         y+= view.frame.size.height;
         [self.view addSubview:view];
-        [self.bottomSmallRectangleViews addObject:view];
+        [bottomSmallRectangleViews addObject:view];
     } 
-}
-
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 -(void)updateDrawerView
 {
-     WeatherItem *currentItem = self.currentWeatherItem;    
-    self.drawerView.humidityLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
-    self.drawerView.precipitationLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
-    self.drawerView.windLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
+    drawerView.humidityLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
+    drawerView.precipitationLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
+    drawerView.windLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
     
-    self.drawerView.humidityLabel.text =[NSString stringWithFormat:@"%@ %%", currentItem.weatherHumidity];
-    self.drawerView.precipitationLabel.text =[NSString stringWithFormat:@"%@ in", currentItem.weatherPrecipitationAmount];
-    self.drawerView.windLabel.text =[NSString stringWithFormat:@"%@ mph", currentItem.weatherWindSpeed];
-    
+    drawerView.humidityLabel.text =[NSString stringWithFormat:@"%@ %%", currentWeatherItem.weatherHumidity];
+    drawerView.precipitationLabel.text =[NSString stringWithFormat:@"%@ in", currentWeatherItem.weatherPrecipitationAmount];
+    drawerView.windLabel.text =[NSString stringWithFormat:@"%@ mph", currentWeatherItem.weatherWindSpeed];
 }
 
 -(void)updateDetailView
 {    
-    WeatherItem *currentItem = self.currentWeatherItem;    
+    detailView.dayLabel1.text = [currentWeatherItem.nextDays objectAtIndex:0];
+    detailView.dayLabel2.text = [currentWeatherItem.nextDays objectAtIndex:1];
+    detailView.dayLabel3.text = [currentWeatherItem.nextDays objectAtIndex:2];
+    detailView.dayLabel4.text = [currentWeatherItem.nextDays objectAtIndex:3];
+    detailView.dayLabel5.text = [currentWeatherItem.nextDays objectAtIndex:4];
     
-    self.detailView.dayLabel1.text = [currentItem.nextDays objectAtIndex:0];
-    self.detailView.dayLabel2.text = [currentItem.nextDays objectAtIndex:1];
-    self.detailView.dayLabel3.text = [currentItem.nextDays objectAtIndex:2];
-    self.detailView.dayLabel4.text = [currentItem.nextDays objectAtIndex:3];
-    self.detailView.dayLabel5.text = [currentItem.nextDays objectAtIndex:4];
+    detailView.dayLabel1.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
+    detailView.dayLabel2.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
+    detailView.dayLabel3.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
+    detailView.dayLabel4.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
+    detailView.dayLabel5.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
+
+    detailView.dayTemp1.text = [currentWeatherItem.weatherForecast objectAtIndex:0];
+    detailView.dayTemp2.text = [currentWeatherItem.weatherForecast objectAtIndex:1];
+    detailView.dayTemp3.text = [currentWeatherItem.weatherForecast objectAtIndex:2];
+    detailView.dayTemp4.text = [currentWeatherItem.weatherForecast objectAtIndex:3];
+    detailView.dayTemp5.text = [currentWeatherItem.weatherForecast objectAtIndex:4];
     
-    self.detailView.dayLabel1.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
-    self.detailView.dayLabel2.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
-    self.detailView.dayLabel3.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
-    self.detailView.dayLabel4.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
-    self.detailView.dayLabel5.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
+    detailView.dayTemp1.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
+    detailView.dayTemp2.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
+    detailView.dayTemp3.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
+    detailView.dayTemp4.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
+    detailView.dayTemp5.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
 
-    self.detailView.dayTemp1.text = [currentItem.weatherForecast objectAtIndex:0];
-    self.detailView.dayTemp2.text = [currentItem.weatherForecast objectAtIndex:1];
-    self.detailView.dayTemp3.text = [currentItem.weatherForecast objectAtIndex:2];
-    self.detailView.dayTemp4.text = [currentItem.weatherForecast objectAtIndex:3];
-    self.detailView.dayTemp5.text = [currentItem.weatherForecast objectAtIndex:4];
-    
-    self.detailView.dayTemp1.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
-    self.detailView.dayTemp2.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
-    self.detailView.dayTemp3.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
-    self.detailView.dayTemp4.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
-    self.detailView.dayTemp5.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
+    detailView.dayImage1.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:0];
+    detailView.dayImage2.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:1];
+    detailView.dayImage3.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:2];
+    detailView.dayImage4.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:3];
+    detailView.dayImage5.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:4];
 
-
-    self.detailView.dayImage1.image = [currentItem.weatherForecastConditionsImages objectAtIndex:0];
-    
-    self.detailView.dayImage2.image = [currentItem.weatherForecastConditionsImages objectAtIndex:1];
-
-    self.detailView.dayImage3.image = [currentItem.weatherForecastConditionsImages objectAtIndex:2];
-
-    self.detailView.dayImage4.image = [currentItem.weatherForecastConditionsImages objectAtIndex:3];
-    self.detailView.dayImage5.image = [currentItem.weatherForecastConditionsImages objectAtIndex:4];
-
-    self.detailView.madeWithLoveLabel.font = [UIFont fontWithName:@"steelfish" size:20];
-     self.detailView.designedByLabel.font = [UIFont fontWithName:@"steelfish" size:20];
+    detailView.madeWithLoveLabel.font = [UIFont fontWithName:@"steelfish" size:20];
+    detailView.designedByLabel.font = [UIFont fontWithName:@"steelfish" size:20];
 }
 
 -(void)tapRecognizedOnLargeRectangeView:(UITapGestureRecognizer *)recognizer
@@ -209,14 +192,12 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     [self toggleOpenAndClosedState];
 }
 
--(void)setCurrentWeatherItem:(WeatherItem *)currentWeatherItem
+-(void)setCurrentWeatherItem:(WeatherItem *)newCurrentWeatherItem
 {    
-    if (_currentWeatherItem !=currentWeatherItem)
-    {
-       _currentWeatherItem = currentWeatherItem;
-    }
-        
-    self.currentTempLabel.text = [NSString stringWithFormat:@"%@°", currentWeatherItem.weatherCurrentTemp];
+    if (currentWeatherItem != newCurrentWeatherItem)
+        currentWeatherItem = newCurrentWeatherItem;
+  
+    currentTempLabel.text = [NSString stringWithFormat:@"%@°", currentWeatherItem.weatherCurrentTemp];
 
     [self updateDetailView];
     [self updateDrawerView];
@@ -224,37 +205,35 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 
 -(void)setIndexOfCurrentTempString:(int)index
 {
-    if (self.open)
+    if (isOpen)
     {
         [self toggleOpenAndClosedState];
     }
     
-    if (self.isChangingIndex ==NO)
+    if (isChangingIndex ==NO)
     {
         return;
     } else {
         
-        if (self.soundsEnabled){
-        
+        if (soundsEnabled){
             [[SoundManager sharedManager] playClankSound];
-        } else {
-            //Do Nothing 
         }
+        
     //Animattions
     [UIView animateWithDuration:0.4
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          //Remove top and bottom views to expose the current temperature view 
-                        for (int i=0; i<self.bottomSmallRectangleViews.count; i++)
+                        for (int i=0; i<bottomSmallRectangleViews.count; i++)
                          {
-                             UIView *view = [self.bottomSmallRectangleViews objectAtIndex:i];
+                             UIView *view = [bottomSmallRectangleViews objectAtIndex:i];
                              [view setFrame:CGRectMake(0, +500, 320, kheightOfSmallRectangles)];
                          }
                          
-                         for (int i=0; i<self.topSmallRectangleViews.count; i++)
+                         for (int i=0; i<topSmallRectangleViews.count; i++)
                          {
-                             UIView *view = [self.topSmallRectangleViews objectAtIndex:i];
+                             UIView *view = [topSmallRectangleViews objectAtIndex:i];
                              [view setFrame:CGRectMake(0, -1000, 320, kheightOfSmallRectangles)];
                          }    
                      } 
@@ -266,31 +245,27 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                           animations:^{
                                               //Animate the current temperature view into its new location 
                                               CGFloat y = index * kheightOfSmallRectangles;
-                                              [self.largeRectangleScrollView setFrame:CGRectMake(0, y, 320, 220)];
-                                              self.largeRectangleScrollView.backgroundColor = [self.colorsArray objectAtIndex:index];
-                                              self.detailView.backgroundColor = [self.colorsArray objectAtIndex:index];
-                                              self.drawerView.backgroundColor = [self.colorsArray objectAtIndex:index];
+                                              [largeRectangleScrollView setFrame:CGRectMake(0, y, 320, 220)];
+                                              largeRectangleScrollView.backgroundColor = [colorsArray objectAtIndex:index];
+                                              detailView.backgroundColor = [colorsArray objectAtIndex:index];
+                                              drawerView.backgroundColor = [colorsArray objectAtIndex:index];
                                           } 
                                           completion:^(BOOL finished){
                                              
-                                              if (self.soundsEnabled){
-                                                  
+                                              if (soundsEnabled){
                                                    [[SoundManager sharedManager] playSwooshSound];
-                                              } else {
-                                                  //Do Nothing 
                                               }
-                                             
                                               
                                               [UIView animateWithDuration:0.4
                                                                     delay:0.0
                                                                   options: UIViewAnimationOptionCurveEaseIn
                                                                animations:^{
                                                                    //Add Top rectangle views above current temperature view 
-                                                                   [self.topSmallRectangleViews removeAllObjects];
+                                                                   [topSmallRectangleViews removeAllObjects];
                                                                    
                                                                    CGFloat y =0;
                                                                    for (float i = 0; i < index; i++) {
-                                                                       UIColor *color = [self.colorsArray     objectAtIndex:i];
+                                                                       UIColor *color = [colorsArray     objectAtIndex:i];
                                                                 
                                                                        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y -500, 320, kheightOfSmallRectangles)];
                                                                        view.alpha = 0;
@@ -298,7 +273,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                                                        y+= view.bounds.size.height;
                                                                        
                                                                        [self.view addSubview:view];
-                                                                       [self.topSmallRectangleViews addObject:view];
+                                                                       [topSmallRectangleViews addObject:view];
                                                                        
                                                                        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                                                                            
@@ -310,20 +285,20 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                                                            
                                                                        }]; 
                                                                    }
-                                                                   y = self.largeRectangleScrollView.frame.size.height +y;
+                                                                   y = largeRectangleScrollView.frame.size.height +y;
                                                                    
                                                                    //Add bottom rectangle views below current temperature view 
-                                                                   [self.bottomSmallRectangleViews removeAllObjects];
+                                                                   [bottomSmallRectangleViews removeAllObjects];
 
                                                                    for (float i = index +1; i < 13; i++) {
-                                                                       UIColor *color = [self.colorsArray     objectAtIndex:i];
+                                                                       UIColor *color = [colorsArray objectAtIndex:i];
                                                                        
                                                                        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, y+500, 320, kheightOfSmallRectangles)];
                                                                        view.alpha = 0;
                                                                        view.backgroundColor = color;
                                                                        y+= view.frame.size.height;
                                                                        [self.view addSubview:view];
-                                                                       [self.bottomSmallRectangleViews addObject:view];
+                                                                       [bottomSmallRectangleViews addObject:view];
                                                                        [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                                                                            
                                                                            [view setFrame:CGRectMake(0, y-kOffsetForAnimationWhenTapped - kheightOfSmallRectangles, 320, kheightOfSmallRectangles)];
@@ -340,16 +315,15 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                           }];
                      }];
     }
-    self.isChangingIndex = NO;
+    isChangingIndex = NO;
 }
 
 #pragma mark UIGestureRecognizer Delegate Methods 
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    
-    if ([touch.view isKindOfClass:[UIButton class]]) {      //change it to your condition
-        return NO;
-    }
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
+{    
+    if ([touch.view isKindOfClass:[UIButton class]]) return NO;
+
     return YES;
 }
 
@@ -357,21 +331,21 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 
 -(void)didRecieveAndParseNewWeatherItem:(WeatherItem*)item
 {
-    self.currentWeatherItem = item;
-    
-    self.isChangingIndex = YES;
-    
+    currentWeatherItem = item;
+    isChangingIndex = YES;
     self.indexOfCurrentTempString = item.indexForWeatherMap;
+    [self updateDrawerView];
+    [self updateDetailView];
 }
 
 -(void)toggleOpenAndClosedState
 {
-    if (self.indexOfCurrentTempString <10)
+    if (indexOfCurrentTempString <10)
     {
-        if (self.open)
+        if (isOpen)
         {
-            self.open = NO;
-            for (UIView *view in self.bottomSmallRectangleViews)
+            isOpen = NO;
+            for (UIView *view in bottomSmallRectangleViews)
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
@@ -384,8 +358,8 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                  }];
             }        
         } else {
-            self.open = YES;
-            for (UIView *view in self.bottomSmallRectangleViews)
+            isOpen = YES;
+            for (UIView *view in bottomSmallRectangleViews)
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
@@ -399,21 +373,21 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             }
         }
     }
-    else if (self.indexOfCurrentTempString >=10)
+    else if (indexOfCurrentTempString >=10)
     {
-        if (self.open)
+        if (isOpen)
         {
-            self.open = NO;
+            isOpen = NO;
             [UIView animateWithDuration:0.5
                                   delay:0.0
                                 options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 CGPoint originOfLargeRectangleScrollView = self.largeRectangleScrollView.frame.origin;
-                                 [self.largeRectangleScrollView setFrame:CGRectMake(originOfLargeRectangleScrollView.x, originOfLargeRectangleScrollView.y + kOffsetForAnimationWhenTapped, 320, self.largeRectangleScrollView.frame.size.height)];
+                                 CGPoint originOfLargeRectangleScrollView = largeRectangleScrollView.frame.origin;
+                                 [largeRectangleScrollView setFrame:CGRectMake(originOfLargeRectangleScrollView.x, originOfLargeRectangleScrollView.y + kOffsetForAnimationWhenTapped, 320, largeRectangleScrollView.frame.size.height)];
                              } 
                              completion:^(BOOL finished){
                              }];            
-            for (UIView *view in self.topSmallRectangleViews)
+            for (UIView *view in topSmallRectangleViews)
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
@@ -426,17 +400,17 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                  }];
             }        
         } else {
-            self.open = YES;            
+            isOpen = YES;            
             [UIView animateWithDuration:0.5
                                   delay:0.0
                                 options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
-                                 CGPoint originOfLargeRectangleScrollView = self.largeRectangleScrollView.frame.origin;
-                                 [self.largeRectangleScrollView setFrame:CGRectMake(originOfLargeRectangleScrollView.x, originOfLargeRectangleScrollView.y - kOffsetForAnimationWhenTapped, 320, self.largeRectangleScrollView.frame.size.height)];
+                                 CGPoint originOfLargeRectangleScrollView = largeRectangleScrollView.frame.origin;
+                                 [largeRectangleScrollView setFrame:CGRectMake(originOfLargeRectangleScrollView.x, originOfLargeRectangleScrollView.y - kOffsetForAnimationWhenTapped, 320, largeRectangleScrollView.frame.size.height)];
                              } 
                              completion:^(BOOL finished){
                              }];
-            for (UIView *view in self.topSmallRectangleViews)
+            for (UIView *view in topSmallRectangleViews)
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
@@ -457,12 +431,12 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 
 -(void)turnSoundsOn
 {
-    self.soundsEnabled = YES;
+    soundsEnabled = YES;
 }
 
 -(void)turnSoundsOff
 {
-    self.soundsEnabled = NO;
+    soundsEnabled = NO;
 }
 
 @end

@@ -26,26 +26,6 @@
 #import "DrawerView.h"
 #import "SoundManager.h"
 
-@interface WeatherViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate, WeatherManagerDelegate >
-
-@property (nonatomic) int indexOfCurrentTempString;
-@property (nonatomic, strong) NSArray *colorsArray;
-
-@property (nonatomic, strong) NSMutableArray *topSmallRectangleViews;
-@property (nonatomic, strong) NSMutableArray *bottomSmallRectangleViews;
-
-@property (nonatomic) BOOL open;
-@property (nonatomic) BOOL soundsEnabled;
-@property (nonatomic) BOOL isChangingIndex;
-
-@property (nonatomic, strong) WeatherItem *currentWeatherItem;
-
-//Views 
-@property (nonatomic, strong) UILabel *currentTempLabel;
-@property (nonatomic, strong) UIScrollView *largeRectangleScrollView;
-@property (nonatomic, strong) DetailView *detailView;
-@property (nonatomic, strong) DrawerView *drawerView;
-
-@property (nonatomic, strong) UIButton *infoButton;
+@interface WeatherViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate, WeatherManagerDelegate>
 
 @end
