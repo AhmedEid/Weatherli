@@ -24,18 +24,22 @@
 #import "WeatherViewController.h"
 #import "WeatherManager.h"
 
+@interface AppDelegate ()
+{
+    WeatherManager *weatherManager;
+}
+@end
+
 @implementation AppDelegate
 
 @synthesize window = _window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {    
-    
-    [[WeatherManager sharedWeatherManager] startUpdatingLocation];
-
-    [[UIApplication sharedApplication] setStatusBarHidden:YES];
     WeatherViewController *viewController = [[WeatherViewController alloc] init];
-    [WeatherManager sharedWeatherManager].delegate = viewController;
+    weatherManager = [WeatherManager sharedManager];
+    weatherManager.delegate = viewController;
+    [weatherManager startUpdatingLocation];
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -46,7 +50,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
-     [[WeatherManager sharedWeatherManager] startUpdatingLocation];
+     [weatherManager startUpdatingLocation];
 }
 
 

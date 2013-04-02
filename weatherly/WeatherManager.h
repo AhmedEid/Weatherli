@@ -26,33 +26,18 @@
 #import "LocationGetter.h"
 #import "WeatherItem+Parse.h"
 #import <MapKit/MapKit.h>
+
 @protocol WeatherManagerDelegate <NSObject>
-
 -(void)didRecieveAndParseNewWeatherItem:(WeatherItem*)item;
-
-@optional
-
 @end
 
-
 @interface WeatherManager : NSObject <LocationGetterDelegate>
-{
-    Reachability* internetReachable;
-    Reachability* hostReachable;
-}
+
++(id)sharedManager;
+
 -(void)startUpdatingLocation;
-
-+(WeatherManager *)sharedWeatherManager;
 -(WeatherItem *)currentWeatherItem;
--(UIImage *)imageForForecastConditionForConditionDescription:(NSString *)description;
 
--(WeatherItem *)weatherItemForLocation:(CLLocation *)location;
-
-@property (nonatomic, assign) id <WeatherManagerDelegate> delegate;
-@property (nonatomic, strong) LocationGetter *locationGetter;
-
-@property (nonatomic, assign) BOOL hostActive;
-@property (nonatomic, assign) BOOL internetActive;
-@property (nonatomic, strong) NSTimer *internetConnectionTimer;
+@property (nonatomic, assign) id <WeatherManagerDelegate>delegate;
 
 @end

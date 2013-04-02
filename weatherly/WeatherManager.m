@@ -21,49 +21,49 @@
 //
 #import "WeatherManager.h"
 
-WeatherManager *sharedWeatherManager = nil;
+@interface WeatherManager ()
+{
+    Reachability *internetReachable;
+    Reachability *hostReachable;
+    LocationGetter *locationGetter;
+}
+@end
 
 @implementation WeatherManager
-@synthesize locationGetter = _locationGetter;
+
 @synthesize delegate = _delegate;
-@synthesize internetActive, hostActive;
-@synthesize internetConnectionTimer = _internetConnectionTimer;
 
-#pragma mark - Singleton Stuff
+# pragma mark - Singleton Methods
 
-+(WeatherManager *)sharedWeatherManager
++ (id)sharedManager
 {
-    if (sharedWeatherManager ==nil)
-    {
-        sharedWeatherManager = [[super allocWithZone:NULL] init];
-    }
-    return sharedWeatherManager;
+    static WeatherManager *_sharedManager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedManager = [[self alloc] init];
+    });
+    return _sharedManager;
 }
 
-- (id)init
-{
-    self = [super init];
-    
-    if (self) {
+- (id)init {
+    if (self = [super init]) {
+        // Init code here
+        
     }
     return self;
 }
 
-// We don't want to allocate a new instance, so return the current one.
-+ (id)allocWithZone:(NSZone*)zone {
-    return [self sharedWeatherManager];
+- (void)dealloc {
+    // Should never be called, but just here for clarity really.
 }
 
-// Equally, we don't want to generate multiple copies of the singleton.
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
+# pragma mark - Instance Methods
 
 -(void)startUpdatingLocation
 {
-    self.locationGetter = [[LocationGetter alloc] init];
-    self.locationGetter.delegate = self;
-    [self.locationGetter startUpdates]; 
+    locationGetter = [[LocationGetter alloc] init];
+    locationGetter.delegate = self;
+    [locationGetter startUpdates]; 
 }
 
 -(WeatherItem *)currentWeatherItem
@@ -97,9 +97,9 @@ WeatherManager *sharedWeatherManager = nil;
     }
 }
 
-#pragma mark LocationDelegateMethods 
+#pragma mark - LocationDelegateMethods 
 
-- (void) newPhysicalLocation:(CLLocation *)location;
+- (void)newPhysicalLocation:(CLLocation *)location;
 {   
     //Get the zipcode using CLGeocoder
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
@@ -122,7 +122,7 @@ WeatherManager *sharedWeatherManager = nil;
     }];
 }
 
-#pragma mark Newtorking Methods 
+#pragma mark - Newtorking Methods 
 
 -(void)executeFetchForQueryString:(NSString *)queryString
 {    
@@ -149,8 +149,7 @@ WeatherManager *sharedWeatherManager = nil;
     }
 }
                                
-                               
- //TO BE DELETED                               
+// TODO: TO BE DELETED
 -(int)indexForTemperature:(NSString *)temp
     {
         int temperatureInt = temp.intValue;

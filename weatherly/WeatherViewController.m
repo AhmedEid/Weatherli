@@ -15,6 +15,12 @@ CGFloat  kFontSizeForDetailViewTitleLabels = 30;
 CGFloat  kFontSizeForDetailViewTempLabel = 35;
 CGFloat  kFontSizeForDrawerViewLabels = 30;
 
+@interface WeatherViewController ()
+{
+    WeatherManager *weatherManager;
+}
+@end
+
 @implementation WeatherViewController
 
 @synthesize indexOfCurrentTempString;
@@ -35,6 +41,9 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 {
     self = [super init];
     
+    // Get a reference to the WeatherManager singleton
+    weatherManager = [WeatherManager sharedManager];
+    
     self.colorsArray = [NSArray arrayWithObjects:UIColorFromRGB(0xdb502f), UIColorFromRGB(0xd0632b), UIColorFromRGB(0xd4822c), UIColorFromRGB(0xddac46), UIColorFromRGB(0xe0ca67), UIColorFromRGB(0xe2ce9c), UIColorFromRGB(0xd7dbda), UIColorFromRGB(0xb6cad5), UIColorFromRGB(0x59bbc6), UIColorFromRGB(0x01a9cd), UIColorFromRGB(0x018bbc), UIColorFromRGB(0x0078bd), UIColorFromRGB(0x0068b4), nil];
     
     self.topSmallRectangleViews = [NSMutableArray array];
@@ -54,7 +63,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     self.soundsEnabled = YES;
 
     self.isChangingIndex = NO;
-    indexOfCurrentTempString = [[WeatherManager sharedWeatherManager] currentWeatherItem].indexForWeatherMap;    
+    indexOfCurrentTempString = [weatherManager currentWeatherItem].indexForWeatherMap;
     self.view.backgroundColor = [UIColor blackColor];
     
     //Top Rectangles, above the currentTemperature Rectangle
@@ -85,7 +94,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     self.currentTempLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 180, 160)];
     self.currentTempLabel.font = [UIFont fontWithName:@"steelfish" size:140];
     
-    NSString *string= [[WeatherManager sharedWeatherManager] currentWeatherItem].weatherCurrentTemp;
+    NSString *string= [weatherManager currentWeatherItem].weatherCurrentTemp;
     self.currentTempLabel.text =[NSString stringWithFormat:@"%@°", string];
     self.currentTempLabel.backgroundColor = [UIColor clearColor];
     self.currentTempLabel.textColor = [UIColor whiteColor];
