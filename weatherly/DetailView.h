@@ -24,6 +24,7 @@
 #import "WeatherItem.h"
 
 @interface DetailView : UIView
+
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel1;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel2;
 @property (weak, nonatomic) IBOutlet UILabel *dayLabel3;
@@ -45,6 +46,5 @@
 @property (nonatomic, strong) WeatherItem *item;
 
 -(id)initWithWeatherItem:(WeatherItem *)item andframe:(CGRect )frame;
-
 
 @end

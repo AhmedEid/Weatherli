@@ -22,23 +22,24 @@
 #import "DetailView.h"
 
 @implementation DetailView
-@synthesize dayLabel1;
-@synthesize dayLabel2;
-@synthesize dayLabel3;
-@synthesize dayLabel4;
-@synthesize dayLabel5;
-@synthesize dayImage1;
-@synthesize dayImage2;
-@synthesize dayImage3;
-@synthesize designedByLabel;
-@synthesize dayImage4;
-@synthesize dayImage5;
-@synthesize dayTemp1;
-@synthesize dayTemp2;
-@synthesize dayTemp3;
-@synthesize dayTemp4;
-@synthesize dayTemp5;
-@synthesize madeWithLoveLabel;
+
+@synthesize dayLabel1 = _dayLabel1;
+@synthesize dayLabel2 = _dayLabel2;
+@synthesize dayLabel3 = _dayLabel3;
+@synthesize dayLabel4 = _dayLabel4;
+@synthesize dayLabel5 = _dayLabel5;
+@synthesize dayImage1 = _dayImage1;
+@synthesize dayImage2 = _dayImage2;
+@synthesize dayImage3 = _dayImage3;
+@synthesize designedByLabel = _designedByLabel;
+@synthesize dayImage4 = _dayImage4;
+@synthesize dayImage5 = _dayImage5;
+@synthesize dayTemp1 = _dayTemp1;
+@synthesize dayTemp2 = _dayTemp2;
+@synthesize dayTemp3 = _dayTemp3;
+@synthesize dayTemp4 = _dayTemp4;
+@synthesize dayTemp5 = _dayTemp5;
+@synthesize madeWithLoveLabel = _madeWithLoveLabel;
 @synthesize item = _item;
 
 -(id)initWithFrame:(CGRect)frame
@@ -46,61 +47,31 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
                                                               owner:nil
                                                             options:nil];
-        if ([arrayOfViews count] < 1){
-            return nil;
-        }
-        
+        if ([arrayOfViews count] < 1) return nil;
+
         DetailView *newView = [arrayOfViews objectAtIndex:0];
         [newView setFrame:frame];
-        
         self = newView;
     }
     return self;
 }
 
-
 -(id)initWithWeatherItem:(WeatherItem *)item andframe:(CGRect )frame
 {
     self = [super initWithFrame:frame];
-    
     if (self) {
-        // 
-        
-        NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
-                                                              owner:nil
-                                                            options:nil];
-        if ([arrayOfViews count] < 1){
-            return nil;
-        }
-        
-        DetailView *newView = [arrayOfViews objectAtIndex:0];
-        [newView setFrame:frame];
-        
-        self = newView;
+        // Init code here
         self.item = item;
-        
     }
     return self;
-
 }
 
 -(void)layoutSubviews
 {
     [super layoutSubviews];
-
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

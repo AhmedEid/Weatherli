@@ -23,6 +23,7 @@
 #import "DrawerView.h"
 
 @implementation DrawerView
+
 @synthesize humidityImageView;
 @synthesize humidityLabel;
 @synthesize precipitationImageView;
@@ -35,17 +36,13 @@
     self = [super initWithFrame:frame];
     if (self)
     {
-        
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"DrawerView"
                                                               owner:nil
                                                             options:nil];
-        if ([arrayOfViews count] < 1){
-            return nil;
-        }
+        if ([arrayOfViews count] < 1) return nil;
         
         DrawerView *newView = [arrayOfViews objectAtIndex:0];
         [newView setFrame:frame];
-        
         self = newView;
     }
     return self;

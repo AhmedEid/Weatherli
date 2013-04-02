@@ -22,6 +22,7 @@
 #import <UIKit/UIKit.h>
 
 @interface DrawerView : UIView
+
 @property (weak, nonatomic) IBOutlet UIImageView *humidityImageView;
 @property (weak, nonatomic) IBOutlet UILabel *humidityLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *precipitationImageView;
