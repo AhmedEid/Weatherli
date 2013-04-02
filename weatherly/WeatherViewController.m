@@ -227,7 +227,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
         
         if (self.soundsEnabled){
         
-            [[SoundManager sharedSoundManager] playClankSound];
+            [[SoundManager sharedManager] playClankSound];
         } else {
             //Do Nothing 
         }
@@ -266,7 +266,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                              
                                               if (self.soundsEnabled){
                                                   
-                                                   [[SoundManager sharedSoundManager] playSwooshSound];
+                                                   [[SoundManager sharedManager] playSwooshSound];
                                               } else {
                                                   //Do Nothing 
                                               }

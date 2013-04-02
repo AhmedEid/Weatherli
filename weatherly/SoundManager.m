@@ -22,41 +22,39 @@
 
 #import "SoundManager.h"
 
-SoundManager *sharedSoundManager = nil;
+@interface SoundManager ()
+{
+    AVAudioPlayer *player;
+}
+@end
 
 @implementation SoundManager
-@synthesize player = _player;
 
-+(SoundManager *)sharedSoundManager
+# pragma mark - Singleton Methods
+
++ (id)sharedManager
 {
-    if (sharedSoundManager ==nil)
-    {
-        sharedSoundManager = [[super allocWithZone:NULL] init];
-    }
-    return sharedSoundManager;
+    static SoundManager *_sharedManager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedManager = [[self alloc] init];
+    });
+    return _sharedManager;
 }
 
-
-#pragma mark - Singleton Stuff
-
-- (id)init
-{
-    self = [super init];
-    
-    if (self) {
+- (id)init {
+    if (self = [super init]) {
+        // Init code here
+        
     }
     return self;
 }
 
-// We don't want to allocate a new instance, so return the current one.
-+ (id)allocWithZone:(NSZone*)zone {
-    return [self sharedSoundManager];
+- (void)dealloc {
+    // Should never be called, but just here for clarity really.
 }
 
-// Equally, we don't want to generate multiple copies of the singleton.
-- (id)copyWithZone:(NSZone *)zone {
-    return self;
-}
+# pragma mark - Instance Methods
 
 -(void)playClankSound
 {
@@ -66,7 +64,7 @@ SoundManager *sharedSoundManager = nil;
     NSError* err;
     
     //Initialize our player pointing to the path to our resource
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:
               [NSURL fileURLWithPath:resourcePath] error:&err];
     
     if( err ){
@@ -74,8 +72,8 @@ SoundManager *sharedSoundManager = nil;
     }
     else{
         //set our delegate and begin playback
-        self.player.delegate = self;
-        [self.player play];
+        player.delegate = self;
+        [player play];
     }
 }
 
@@ -87,16 +85,16 @@ SoundManager *sharedSoundManager = nil;
     NSError* err;
     
     //Initialize our player pointing to the path to our resource
-    self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:
-                   [NSURL fileURLWithPath:resourcePath] error:&err];
+    player = [[AVAudioPlayer alloc] initWithContentsOfURL:
+              [NSURL fileURLWithPath:resourcePath] error:&err];
     
     if( err ){
         NSLog(@"Failed loading sound: %@", [err localizedDescription]);
     }
     else{
         //set our delegate and begin playback
-        self.player.delegate = self;
-        [self.player play];
+        player.delegate = self;
+        [player play];
     }
 
 }

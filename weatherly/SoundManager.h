@@ -22,15 +22,10 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
-
-@class SoundManager;
 
 @interface SoundManager : NSObject <AVAudioPlayerDelegate>
 
-@property (nonatomic, strong) AVAudioPlayer *player;
-
-+(SoundManager *)sharedSoundManager;
++ (id)sharedManager;
 
 -(void)playClankSound;
 -(void)playSwooshSound;
