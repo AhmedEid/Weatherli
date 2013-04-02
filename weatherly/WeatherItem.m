@@ -81,5 +81,3 @@
 }
 
 @end
-
-// Fax number for Rent deposit 860-236-4155 

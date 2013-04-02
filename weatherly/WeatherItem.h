@@ -23,9 +23,7 @@
 #import <Foundation/Foundation.h>
 
 @interface WeatherItem : NSObject <NSCoding>
-{
-    
-}
+
 @property (nonatomic) int indexForWeatherMap;
 @property (nonatomic, strong) NSString *weatherCurrentTemp;
 @property (nonatomic, strong) NSArray *nextDays;
@@ -41,8 +39,6 @@
 @property (nonatomic, strong) NSString *weatherHumidity;
 @property (nonatomic, strong) NSString *weatherWindSpeed;
 
-
 -(id)initWithCurrentTemp:(NSString *)currentTemp currentDay:(NSString *)currentDay Forecast:(NSArray *)forecast andForecastConditions:(NSArray *)forecastConditions;
-
 
 @end
