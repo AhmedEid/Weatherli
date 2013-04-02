@@ -280,7 +280,7 @@
 				9E9F246315616B56007B733E /* AppDelegate.m */,
 				C70B069B1561F8B1001D2C81 /* Controllers */,
 				C70B069A1561F8AB001D2C81 /* Views */,
-				C70B06991561F8A4001D2C81 /* Model */,
+				C70B06991561F8A4001D2C81 /* Models & Classes */,
 				9E014ABE15653DC000358260 /* Resources */,
 				9E9F245A15616B56007B733E /* Supporting Files */,
 			);
@@ -298,7 +298,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C70B06991561F8A4001D2C81 /* Model */ = {
+		C70B06991561F8A4001D2C81 /* Models & Classes */ = {
 			isa = PBXGroup;
 			children = (
 				9E2E31851563E609006B04DA /* LocationGetter.h */,
@@ -312,7 +312,7 @@
 				9E9F248315617AF0007B733E /* WeatherItem.h */,
 				9E9F248415617AF0007B733E /* WeatherItem.m */,
 			);
-			name = Model;
+			name = "Models & Classes";
 			sourceTree = "<group>";
 		};
 		C70B069A1561F8AB001D2C81 /* Views */ = {
