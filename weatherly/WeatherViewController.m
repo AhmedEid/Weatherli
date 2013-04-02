@@ -147,7 +147,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     self.drawerView.precipitationLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
     self.drawerView.windLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
     
-    self.drawerView.humidityLabel.text =[NSString stringWithFormat:@"%@ %", currentItem.weatherHumidity];
+    self.drawerView.humidityLabel.text =[NSString stringWithFormat:@"%@ %%", currentItem.weatherHumidity];
     self.drawerView.precipitationLabel.text =[NSString stringWithFormat:@"%@ in", currentItem.weatherPrecipitationAmount];
     self.drawerView.windLabel.text =[NSString stringWithFormat:@"%@ mph", currentItem.weatherWindSpeed];
     
@@ -234,7 +234,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     //Animattions
     [UIView animateWithDuration:0.4
                           delay:0.0
-                        options: UIViewAnimationCurveEaseOut
+                        options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          //Remove top and bottom views to expose the current temperature view 
                         for (int i=0; i<self.bottomSmallRectangleViews.count; i++)
@@ -253,7 +253,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                          
                          [UIView animateWithDuration:0.25
                                                delay:0.0
-                                             options: UIViewAnimationCurveEaseOut
+                                             options: UIViewAnimationOptionCurveEaseOut
                                           animations:^{
                                               //Animate the current temperature view into its new location 
                                               CGFloat y = index * kheightOfSmallRectangles;
@@ -274,7 +274,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                               
                                               [UIView animateWithDuration:0.4
                                                                     delay:0.0
-                                                                  options: UIViewAnimationCurveEaseIn
+                                                                  options: UIViewAnimationOptionCurveEaseIn
                                                                animations:^{
                                                                    //Add Top rectangle views above current temperature view 
                                                                    [self.topSmallRectangleViews removeAllObjects];
@@ -291,7 +291,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                                                        [self.view addSubview:view];
                                                                        [self.topSmallRectangleViews addObject:view];
                                                                        
-                                                                       [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+                                                                       [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                                                                            
                                                                     [view setFrame:CGRectMake(0, y-kheightOfSmallRectangles, 320, kheightOfSmallRectangles)];
                                                                            
@@ -315,7 +315,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                                                        y+= view.frame.size.height;
                                                                        [self.view addSubview:view];
                                                                        [self.bottomSmallRectangleViews addObject:view];
-                                                                       [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationCurveEaseIn animations:^{
+                                                                       [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                                                                            
                                                                            [view setFrame:CGRectMake(0, y-kOffsetForAnimationWhenTapped - kheightOfSmallRectangles, 320, kheightOfSmallRectangles)];
                                                                     
@@ -366,7 +366,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
-                                    options: UIViewAnimationCurveEaseOut
+                                    options: UIViewAnimationOptionCurveEaseOut
                                  animations:^{
                                      CGPoint origin = view.frame.origin;
                                      [view setFrame:CGRectMake(origin.x, origin.y - kOffsetForAnimationWhenTapped, 320, kheightOfSmallRectangles)];
@@ -380,7 +380,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
-                                    options: UIViewAnimationCurveEaseOut
+                                    options: UIViewAnimationOptionCurveEaseOut
                                  animations:^{
                                      CGPoint origin = view.frame.origin;
                                      [view setFrame:CGRectMake(origin.x, origin.y + kOffsetForAnimationWhenTapped, 320, kheightOfSmallRectangles)];
@@ -397,7 +397,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             self.open = NO;
             [UIView animateWithDuration:0.5
                                   delay:0.0
-                                options: UIViewAnimationCurveEaseOut
+                                options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  CGPoint originOfLargeRectangleScrollView = self.largeRectangleScrollView.frame.origin;
                                  [self.largeRectangleScrollView setFrame:CGRectMake(originOfLargeRectangleScrollView.x, originOfLargeRectangleScrollView.y + kOffsetForAnimationWhenTapped, 320, self.largeRectangleScrollView.frame.size.height)];
@@ -408,7 +408,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
-                                    options: UIViewAnimationCurveEaseOut
+                                    options: UIViewAnimationOptionCurveEaseOut
                                  animations:^{
                                      CGPoint origin = view.frame.origin;
                                      [view setFrame:CGRectMake(origin.x, origin.y + kOffsetForAnimationWhenTapped, 320, kheightOfSmallRectangles)];
@@ -420,7 +420,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             self.open = YES;            
             [UIView animateWithDuration:0.5
                                   delay:0.0
-                                options: UIViewAnimationCurveEaseOut
+                                options: UIViewAnimationOptionCurveEaseOut
                              animations:^{
                                  CGPoint originOfLargeRectangleScrollView = self.largeRectangleScrollView.frame.origin;
                                  [self.largeRectangleScrollView setFrame:CGRectMake(originOfLargeRectangleScrollView.x, originOfLargeRectangleScrollView.y - kOffsetForAnimationWhenTapped, 320, self.largeRectangleScrollView.frame.size.height)];
@@ -431,7 +431,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
-                                    options: UIViewAnimationCurveEaseOut
+                                    options: UIViewAnimationOptionCurveEaseOut
                                  animations:^{
                                      CGPoint origin = view.frame.origin;
                                      [view setFrame:CGRectMake(origin.x, origin.y - kOffsetForAnimationWhenTapped, 320, kheightOfSmallRectangles)];

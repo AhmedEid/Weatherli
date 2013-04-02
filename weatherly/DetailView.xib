@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
-		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">11D2001</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<int key="IBDocument.SystemTarget">1552</int>
+		<string key="IBDocument.SystemVersion">12D78</string>
+		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1181</string>
+			<string key="NS.object.0">2083</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
-			<string>IBUIImageView</string>
-			<string>IBUIView</string>
-			<string>IBUILabel</string>
 			<string>IBProxyObject</string>
+			<string>IBUIImageView</string>
+			<string>IBUILabel</string>
+			<string>IBUIView</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -41,6 +41,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{23, 20}, {42, 27}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="431388459"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -74,6 +75,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{82, 20}, {42, 27}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="88182362"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -95,6 +97,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{139, 20}, {42, 27}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="73792022"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -116,6 +119,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{195, 20}, {42, 27}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="188781631"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -137,6 +141,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{254, 20}, {42, 27}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="773216318"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -158,6 +163,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 55}, {49, 49}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1067562296"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<float key="IBUIAlpha">0.89999997615814209</float>
@@ -170,6 +176,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{193, 55}, {49, 49}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="193798226"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<float key="IBUIAlpha">0.89999997615814209</float>
@@ -182,6 +189,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{136, 55}, {49, 49}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="843917325"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<float key="IBUIAlpha">0.89999997615814209</float>
@@ -194,6 +202,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{79, 55}, {49, 49}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="759470832"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<float key="IBUIAlpha">0.89999997615814209</float>
@@ -206,6 +215,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{251, 55}, {49, 49}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="419554473"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<float key="IBUIAlpha">0.89999997615814209</float>
@@ -218,6 +228,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{23, 107}, {42, 39}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="168383781"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -246,6 +257,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{82, 107}, {42, 39}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="292627729"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -267,6 +279,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{136, 107}, {42, 39}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="148716884"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -288,6 +301,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{193, 107}, {42, 39}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="912126590"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -309,6 +323,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{254, 107}, {42, 39}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="167294313"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -330,6 +345,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 193}, {276, 27}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="818892868"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
@@ -351,7 +367,7 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{26, 168}, {269, 26}}</string>
 						<reference key="NSSuperview" ref="686074150"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -370,66 +386,12 @@
 				</array>
 				<string key="NSFrameSize">{320, 220}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="158433219"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
-					<int key="NSColorSpace">10</int>
-					<object class="NSImage" key="NSImage">
-						<int key="NSImageFlags">549453824</int>
-						<string key="NSSize">{512, 1}</string>
-						<array class="NSMutableArray" key="NSReps">
-							<array>
-								<integer value="0"/>
-								<object class="NSBitmapImageRep">
-									<object class="NSData" key="NSTIFFRepresentation">
-										<bytes key="NS.bytes">TU0AKgAACAjFzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/
-y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/
-xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/
-xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/
-xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/
-xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/
-xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/
-y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/
-y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/
-xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/
-xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/
-xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/
-xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/
-xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/
-y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/
-y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/
-xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/
-xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/
-xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/
-xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/
-xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/
-y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/
-y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/
-xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/
-xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/
-xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/
-xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/
-xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/
-y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/
-y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/
-xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/
-xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/
-xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/xczS/8vS2P/L0tj/xczU/8XM1P/FzNT/
-xczU/8XM0v/L0tj/y9LY/8XM1P/FzNT/xczU/8XM1P/FzNL/y9LY/8vS2P/FzNT/xczU/8XM1P/FzNT/
-xczS/8vS2P/L0tj/xczU/wANAQAAAwAAAAECAAAAAQEAAwAAAAEAAQAAAQIAAwAAAAQAAAiqAQMAAwAA
-AAEAAQAAAQYAAwAAAAEAAgAAAREABAAAAAEAAAAIARIAAwAAAAEAAQAAARUAAwAAAAEABAAAARYAAwAA
-AAEAAQAAARcABAAAAAEAAAgAARwAAwAAAAEAAQAAAVIAAwAAAAEAAQAAAVMAAwAAAAQAAAiyAAAAAAAI
-AAgACAAIAAEAAQABAAE</bytes>
-									</object>
-								</object>
-							</array>
-						</array>
-						<object class="NSColor" key="NSColor">
-							<int key="NSColorSpace">3</int>
-							<bytes key="NSWhite">MCAwAA</bytes>
-						</object>
-					</object>
-					<string key="IBUIColorCocoaTouchKeyPath">groupTableViewBackgroundColor</string>
+					<int key="NSColorSpace">1</int>
+					<bytes key="NSRGB">MCAwIDAgMAA</bytes>
 				</object>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 			</object>
@@ -733,15 +695,115 @@ AAgACAAIAAEAAQABAAE</bytes>
 			<nil key="sourceID"/>
 			<int key="maxID">43</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">DetailView</string>
+					<string key="superclassName">UIView</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="dayImage1">UIImageView</string>
+						<string key="dayImage2">UIImageView</string>
+						<string key="dayImage3">UIImageView</string>
+						<string key="dayImage4">UIImageView</string>
+						<string key="dayImage5">UIImageView</string>
+						<string key="dayLabel1">UILabel</string>
+						<string key="dayLabel2">UILabel</string>
+						<string key="dayLabel3">UILabel</string>
+						<string key="dayLabel4">UILabel</string>
+						<string key="dayLabel5">UILabel</string>
+						<string key="dayTemp1">UILabel</string>
+						<string key="dayTemp2">UILabel</string>
+						<string key="dayTemp3">UILabel</string>
+						<string key="dayTemp4">UILabel</string>
+						<string key="dayTemp5">UILabel</string>
+						<string key="designedByLabel">UILabel</string>
+						<string key="madeWithLoveLabel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="dayImage1">
+							<string key="name">dayImage1</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayImage2">
+							<string key="name">dayImage2</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayImage3">
+							<string key="name">dayImage3</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayImage4">
+							<string key="name">dayImage4</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayImage5">
+							<string key="name">dayImage5</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayLabel1">
+							<string key="name">dayLabel1</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayLabel2">
+							<string key="name">dayLabel2</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayLabel3">
+							<string key="name">dayLabel3</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayLabel4">
+							<string key="name">dayLabel4</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayLabel5">
+							<string key="name">dayLabel5</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayTemp1">
+							<string key="name">dayTemp1</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayTemp2">
+							<string key="name">dayTemp2</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayTemp3">
+							<string key="name">dayTemp3</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayTemp4">
+							<string key="name">dayTemp4</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="dayTemp5">
+							<string key="name">dayTemp5</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="designedByLabel">
+							<string key="name">designedByLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="madeWithLoveLabel">
+							<string key="name">madeWithLoveLabel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/DetailView.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencyDefaults">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaTouchPlugin.iPhoneOS</string>
-			<real value="1296" key="NS.object.0"/>
+			<real value="1552" key="NS.object.0"/>
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">1181</string>
+		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

@@ -73,6 +73,7 @@
 		9ECF1FA11562E16300961C3B /* DetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ECF1FA01562E16300961C3B /* DetailView.m */; };
 		9ECF1FA31562E17900961C3B /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ECF1FA21562E17900961C3B /* DetailView.xib */; };
 		C74741C91561D8570072B393 /* WeatherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C74741C81561D8570072B393 /* WeatherViewController.m */; };
+		D452BABB170B6F4900B415CF /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D452BABA170B6F4900B415CF /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -155,6 +156,7 @@
 		9ECF1FA21562E17900961C3B /* DetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
 		C74741C71561D8570072B393 /* WeatherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherViewController.h; sourceTree = "<group>"; };
 		C74741C81561D8570072B393 /* WeatherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherViewController.m; sourceTree = "<group>"; };
+		D452BABA170B6F4900B415CF /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +238,7 @@
 		9E9F244415616B56007B733E = {
 			isa = PBXGroup;
 			children = (
+				D452BABA170B6F4900B415CF /* Default-568h@2x.png */,
 				9E014ACE15655F8C00358260 /* Default@2x.png */,
 				9E014ACC15655F8600358260 /* Default.png */,
 				9E014ACA15655EC700358260 /* icon57.png */,
@@ -360,7 +363,7 @@
 		9E9F244615616B56007B733E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0460;
 			};
 			buildConfigurationList = 9E9F244915616B56007B733E /* Build configuration list for PBXProject "Weatherli" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -430,6 +433,7 @@
 				9E014ACF15655F8C00358260 /* Default@2x.png in Resources */,
 				9E9BFACF1566900E00E0F10A /* clank.mp3 in Resources */,
 				9E9BFAD91566933300E0F10A /* swoosh.mp3 in Resources */,
+				D452BABB170B6F4900B415CF /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +478,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Eid (2PVQCHP2WJ)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Eid (2PVQCHP2WJ)";
 				COPY_PHASE_STRIP = NO;
@@ -502,6 +510,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Ahmed Eid";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ahmed Eid";
 				COPY_PHASE_STRIP = YES;
@@ -522,13 +534,15 @@
 		9E9F246E15616B56007B733E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer: Ahmed Eid (2PVQCHP2WJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "weatherly/Weatherli-Prefix.pch";
 				INFOPLIST_FILE = "weatherly/Weatherli-Info.plist";
 				INSTALL_PATH = "";
 				PRODUCT_NAME = Weatherli;
-				PROVISIONING_PROFILE = "8FC342D9-5E2B-40D4-8BB9-92497EF97C18";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
@@ -538,13 +552,15 @@
 		9E9F246F15616B56007B733E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Ahmed Eid";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "weatherly/Weatherli-Prefix.pch";
 				INFOPLIST_FILE = "weatherly/Weatherli-Info.plist";
 				INSTALL_PATH = "";
 				PRODUCT_NAME = Weatherli;
-				PROVISIONING_PROFILE = "0E2CA119-3219-416A-8103-7739E7023A12";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SKIP_INSTALL = NO;
 				STRIP_INSTALLED_PRODUCT = YES;
 				WRAPPER_EXTENSION = app;
