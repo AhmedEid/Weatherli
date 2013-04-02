@@ -24,17 +24,13 @@
 #import <CoreLocation/CoreLocation.h>
 
 @protocol LocationGetterDelegate <NSObject>
-@required
 - (void) newPhysicalLocation:(CLLocation *)location;
 @end
 
-@interface LocationGetter : NSObject <CLLocationManagerDelegate> { 
-    CLLocationManager *locationManager;
-    id delegate;
-}
+@interface LocationGetter : NSObject <CLLocationManagerDelegate>
 
 - (void)startUpdates;
 
-@property (nonatomic, retain) CLLocationManager *locationManager;
-@property(nonatomic , retain) id delegate;
+@property (nonatomic, assign) id <LocationGetterDelegate>delegate;
+
 @end

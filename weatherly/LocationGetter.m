@@ -19,14 +19,27 @@
 //You should have received a copy of the GNU General Public License
 //along with Weatherli.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 #import "LocationGetter.h"
-#import <CoreLocation/CoreLocation.h>
+
+@interface LocationGetter ()
+{
+    CLLocationManager *locationManager;
+    BOOL didUpdate;
+}
+@end
 
 @implementation LocationGetter
 
-@synthesize locationManager, delegate;
+@synthesize delegate = _delegate;
 
-BOOL didUpdate = NO;
+- (id)init {
+    if (self = [super init]) {
+        // Init code here
+        didUpdate = NO;
+    }
+    return self;
+}
 
 - (void)startUpdates
 {    
@@ -43,15 +56,13 @@ BOOL didUpdate = NO;
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your location could not be determined. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-    [alert show];
-    [alert release];      
+    [alert show];     
 }
 
 // Delegate method from the CLLocationManagerDelegate protocol.
 - (void)locationManager:(CLLocationManager *)manage didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-        if (didUpdate)
-            return;
+        if (didUpdate) return;
     
         didUpdate = YES;
     
@@ -59,14 +70,7 @@ BOOL didUpdate = NO;
         [locationManager stopUpdatingLocation];
 	        
         // let our delegate know we're done
-        [delegate newPhysicalLocation:newLocation];
-}
-
-- (void)dealloc
-{
-    [locationManager release];
-
-    [super dealloc];
+        [self.delegate newPhysicalLocation:newLocation];
 }
 
 @end
