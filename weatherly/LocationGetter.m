@@ -33,12 +33,28 @@
 
 @synthesize delegate = _delegate;
 
+# pragma mark - Singleton Methods
+
++ (id)sharedManager
+{
+    static LocationGetter *_sharedManager;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedManager = [[self alloc] init];
+    });
+    return _sharedManager;
+}
+
 - (id)init {
     if (self = [super init]) {
         // Init code here
         didUpdate = NO;
     }
     return self;
+}
+
+- (void)dealloc {
+    // Should never be called, but just here for clarity really.
 }
 
 - (void)startUpdates

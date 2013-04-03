@@ -34,6 +34,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     
     // Views
     UILabel *currentTempLabel;
+    UIImageView *currentTempImage;
     UIScrollView *largeRectangleScrollView;
     DetailView *detailView;
     DrawerView *drawerView;
@@ -153,9 +154,19 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     [largeRectangleScrollView addSubview:currentTempLabel];
     
     // Picture of Weather
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(currentTempLabel.bounds.size.width, 30 , 120, 120)];
-    [imageView setImage:[UIImage imageNamed:@"sun.png"]];
-    [largeRectangleScrollView addSubview:imageView];
+    currentTempImage = [[UIImageView alloc] initWithFrame:CGRectMake(currentTempLabel.bounds.size.width, 30 , 120, 120)];
+    [currentTempImage setImage:[UIImage imageNamed:@"sun.png"]];
+    [largeRectangleScrollView addSubview:currentTempImage];
+}
+
+- (void)updateCurrentTemperatureView
+{
+    // Current Temperature Label
+    NSString *string= [weatherManager currentWeatherItem].weatherCurrentTemp;
+    currentTempLabel.text =[NSString stringWithFormat:@"%@°", string];
+    
+    // Picture of Weather
+    [currentTempImage setImage:[weatherManager currentWeatherItem].weatherCurrentTempImage];
 }
 
 -(void)updateDrawerView
@@ -208,17 +219,6 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 -(void)tapRecognizedOnLargeRectangeView:(UITapGestureRecognizer *)recognizer
 {
     [self toggleOpenAndClosedState];
-}
-
--(void)setCurrentWeatherItem:(WeatherItem *)newCurrentWeatherItem
-{
-    if (currentWeatherItem != newCurrentWeatherItem)
-        currentWeatherItem = newCurrentWeatherItem;
-    
-    currentTempLabel.text = [NSString stringWithFormat:@"%@°", currentWeatherItem.weatherCurrentTemp];
-    
-    [self updateDetailView];
-    [self updateDrawerView];
 }
 
 -(void)setIndexOfCurrentTempString:(int)index
@@ -351,6 +351,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     currentWeatherItem = item;
     isChangingIndex = YES;
     self.indexOfCurrentTempString = item.indexForWeatherMap;
+    [self updateCurrentTemperatureView];
     [self updateDrawerView];
     [self updateDetailView];
 }

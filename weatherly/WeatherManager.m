@@ -61,7 +61,7 @@
 
 -(void)startUpdatingLocation
 {
-    locationGetter = [[LocationGetter alloc] init];
+    locationGetter = [LocationGetter sharedManager];
     locationGetter.delegate = self;
     [locationGetter startUpdates]; 
 }
@@ -70,7 +70,6 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"currentItem"];
-    WeatherItem *item = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     
     if (!data)
     {
@@ -79,20 +78,25 @@
         NSArray *forecastConditions = [NSArray arrayWithObjects:@"Sunny",@"Rainy",@"Sunny",@"Cloudy",@"Heavy Rain", nil];
         
         WeatherItem *defaultItem = [[WeatherItem alloc] initWithCurrentTemp:@"100" currentDay:@"Mon" Forecast:forecast andForecastConditions:forecastConditions];
-        item.indexForWeatherMap = [self indexForTemperature:item.weatherCurrentTemp];
-        item.weatherWindSpeed = @"5";
-        item.weatherCode = @"116";
-        item.weatherCurrentTempImage = [UIImage imageNamed:@"sun.png"];
-        item.weatherHumidity = @"50";
-        item.weatherPrecipitationAmount = @"0";
+        defaultItem.indexForWeatherMap = [self indexForTemperature:defaultItem.weatherCurrentTemp];
+        defaultItem.weatherWindSpeed = @"5";
+        defaultItem.weatherCode = @"116";
+        defaultItem.weatherCurrentTempImage = [UIImage imageNamed:@"sun.png"];
+        defaultItem.weatherHumidity = @"50";
+        defaultItem.weatherPrecipitationAmount = @"0";
         
         UIImage *sun = [UIImage imageNamed:@"sun.png"];
-        item.weatherForecastConditionsImages = [NSArray arrayWithObjects: sun, sun, sun, sun, sun, nil];
+        defaultItem.weatherForecastConditionsImages = [NSArray arrayWithObjects: sun, sun, sun, sun, sun, nil];
+        
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:defaultItem];
+        [defaults setObject:data forKey:@"currentItem"];
+        [defaults synchronize];
         
         [self startUpdatingLocation];
         
         return defaultItem;
     } else {
+        WeatherItem *item = [NSKeyedUnarchiver unarchiveObjectWithData:data];
         return item;
     }
 }
@@ -144,6 +148,7 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:item];
         [defaults setObject:data forKey:@"currentItem"];
+        [defaults synchronize];
         
         [self.delegate didRecieveAndParseNewWeatherItem:item];
     }

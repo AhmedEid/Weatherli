@@ -45,9 +45,9 @@
 		9E014ACB15655EC700358260 /* icon57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E014ACA15655EC700358260 /* icon57.png */; };
 		9E014ACD15655F8600358260 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E014ACC15655F8600358260 /* Default.png */; };
 		9E014ACF15655F8C00358260 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E014ACE15655F8C00358260 /* Default@2x.png */; };
-		9E014ADA156570B000358260 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E014AD9156570B000358260 /* Reachability.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc "; }; };
+		9E014ADA156570B000358260 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E014AD9156570B000358260 /* Reachability.m */; };
 		9E014ADD1565726700358260 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E014ADC1565726700358260 /* SystemConfiguration.framework */; };
-		9E2E31871563E609006B04DA /* LocationGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2E31861563E609006B04DA /* LocationGetter.m */; settings = {COMPILER_FLAGS = " -fno-objc-arc "; }; };
+		9E2E31871563E609006B04DA /* LocationGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2E31861563E609006B04DA /* LocationGetter.m */; };
 		9E6EA6471563D3C700902D1B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6EA6461563D3C700902D1B /* CoreLocation.framework */; };
 		9E9BFACF1566900E00E0F10A /* clank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BFACE1566900E00E0F10A /* clank.mp3 */; };
 		9E9BFAD21566905000E0F10A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9BFAD11566905000E0F10A /* AVFoundation.framework */; };
@@ -540,6 +540,7 @@
 				GCC_PREFIX_HEADER = "weatherly/Weatherli-Prefix.pch";
 				INFOPLIST_FILE = "weatherly/Weatherli-Info.plist";
 				INSTALL_PATH = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Weatherli;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -558,6 +559,7 @@
 				GCC_PREFIX_HEADER = "weatherly/Weatherli-Prefix.pch";
 				INFOPLIST_FILE = "weatherly/Weatherli-Info.plist";
 				INSTALL_PATH = "";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = Weatherli;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";

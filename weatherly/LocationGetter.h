@@ -29,6 +29,7 @@
 
 @interface LocationGetter : NSObject <CLLocationManagerDelegate>
 
++ (id)sharedManager;
 - (void)startUpdates;
 
 @property (nonatomic, assign) id <LocationGetterDelegate>delegate;
