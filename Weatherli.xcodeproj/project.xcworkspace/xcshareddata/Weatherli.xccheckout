@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>BCAC6ED4-1A92-4FF9-AA9C-23CA19A71DEB</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Weatherli</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>9413BA40-9ABC-4579-99F4-E0DB75EF8E25</key>
+		<string>https://github.com/AhmedEid/Weatherli.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Weatherli.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>9413BA40-9ABC-4579-99F4-E0DB75EF8E25</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/AhmedEid/Weatherli.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>9413BA40-9ABC-4579-99F4-E0DB75EF8E25</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>9413BA40-9ABC-4579-99F4-E0DB75EF8E25</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Weatherli</string>
+		</dict>
+	</array>
+</dict>
+</plist>

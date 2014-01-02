@@ -24,7 +24,6 @@
 #import <QuartzCore/QuartzCore.h>
 #import "DetailView.h"
 #import "DrawerView.h"
-#import "SoundManager.h"
 
 @interface WeatherViewController : UIViewController <UIScrollViewDelegate, UIGestureRecognizerDelegate, WeatherManagerDelegate>
 

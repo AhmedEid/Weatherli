@@ -15,8 +15,7 @@ CGFloat  kFontSizeForDetailViewTitleLabels = 30;
 CGFloat  kFontSizeForDetailViewTempLabel = 35;
 CGFloat  kFontSizeForDrawerViewLabels = 30;
 
-@interface WeatherViewController ()
-{
+@interface WeatherViewController () {
     WeatherManager *weatherManager;
     WeatherItem *currentWeatherItem;
     
@@ -29,7 +28,6 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     NSMutableArray *bottomSmallRectangleViews;
     
     BOOL isOpen;
-    BOOL soundsEnabled;
     BOOL isChangingIndex;
     
     // Views
@@ -41,13 +39,14 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     
     UIButton *infoButton;
 }
+
 @end
 
 @implementation WeatherViewController
 
--(void)loadView
-{
-    self.view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
+-(void)loadView {
+    [super loadView];
+    
     self.view.backgroundColor = [UIColor blackColor];
     
     // Setup the colors to display
@@ -58,22 +57,17 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     bottomSmallRectangleViews = [NSMutableArray array];
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // Get a reference to the WeatherManager singleton
     weatherManager = [WeatherManager sharedManager];
     
-    // Bool for enabling sounds to play
-    soundsEnabled = YES;
-    
     // Sets up the views to display with updated data
     [self setupWeatherViews];
 }
 
-- (void)setupWeatherViews
-{
+- (void)setupWeatherViews {
     currentY = 0;
     isChangingIndex = NO;
     indexOfCurrentTempString = [weatherManager currentWeatherItem].indexForWeatherMap;
@@ -109,8 +103,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 }
 
 // Setup the Top Rectangles, above the currentTemperature Rectangle
-- (void)setupTopRectangles
-{
+- (void)setupTopRectangles {
     for (float i = 0; i < indexOfCurrentTempString; i++) {
         currentColor = [colorsArray objectAtIndex:i];
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, currentY, 320, kheightOfSmallRectangles)];
@@ -121,8 +114,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     }
 }
 
-- (void)setupBottomRectangles
-{
+- (void)setupBottomRectangles {
     for (float i = indexOfCurrentTempString +1; i < [colorsArray count]; i++) {
         currentColor = [colorsArray objectAtIndex:i];
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, currentY - kOffsetForAnimationWhenTapped, 320, kheightOfSmallRectangles)];
@@ -159,8 +151,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     [largeRectangleScrollView addSubview:currentTempImage];
 }
 
-- (void)updateCurrentTemperatureView
-{
+- (void)updateCurrentTemperatureView {
     // Current Temperature Label
     NSString *string= [weatherManager currentWeatherItem].weatherCurrentTemp;
     currentTempLabel.text =[NSString stringWithFormat:@"%@°", string];
@@ -169,8 +160,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     [currentTempImage setImage:[weatherManager currentWeatherItem].weatherCurrentTempImage];
 }
 
--(void)updateDrawerView
-{
+-(void)updateDrawerView {
     drawerView.humidityLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
     drawerView.precipitationLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
     drawerView.windLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
@@ -180,52 +170,54 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     drawerView.windLabel.text = [NSString stringWithFormat:@"%@ mph", currentWeatherItem.weatherWindSpeed];
 }
 
--(void)updateDetailView
-{
-    detailView.dayLabel1.text = [currentWeatherItem.nextDays objectAtIndex:0];
-    detailView.dayLabel2.text = [currentWeatherItem.nextDays objectAtIndex:1];
-    detailView.dayLabel3.text = [currentWeatherItem.nextDays objectAtIndex:2];
-    detailView.dayLabel4.text = [currentWeatherItem.nextDays objectAtIndex:3];
-    detailView.dayLabel5.text = [currentWeatherItem.nextDays objectAtIndex:4];
-    
+-(void)updateDetailView {
     detailView.dayLabel1.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
     detailView.dayLabel2.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
     detailView.dayLabel3.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
     detailView.dayLabel4.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
     detailView.dayLabel5.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTitleLabels];
-    
-    detailView.dayTemp1.text = [currentWeatherItem.weatherForecast objectAtIndex:0];
-    detailView.dayTemp2.text = [currentWeatherItem.weatherForecast objectAtIndex:1];
-    detailView.dayTemp3.text = [currentWeatherItem.weatherForecast objectAtIndex:2];
-    detailView.dayTemp4.text = [currentWeatherItem.weatherForecast objectAtIndex:3];
-    detailView.dayTemp5.text = [currentWeatherItem.weatherForecast objectAtIndex:4];
-    
+
     detailView.dayTemp1.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
     detailView.dayTemp2.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
     detailView.dayTemp3.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
     detailView.dayTemp4.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
     detailView.dayTemp5.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDetailViewTempLabel];
     
-    detailView.dayImage1.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:0];
-    detailView.dayImage2.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:1];
-    detailView.dayImage3.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:2];
-    detailView.dayImage4.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:3];
-    detailView.dayImage5.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:4];
-    
     detailView.madeWithLoveLabel.font = [UIFont fontWithName:@"steelfish" size:20];
     detailView.designedByLabel.font = [UIFont fontWithName:@"steelfish" size:20];
+    
+    if (currentWeatherItem.nextDays.count){
+        detailView.dayLabel1.text = [currentWeatherItem.nextDays objectAtIndex:0];
+        detailView.dayLabel2.text = [currentWeatherItem.nextDays objectAtIndex:1];
+        detailView.dayLabel3.text = [currentWeatherItem.nextDays objectAtIndex:2];
+        detailView.dayLabel4.text = [currentWeatherItem.nextDays objectAtIndex:3];
+        detailView.dayLabel5.text = [currentWeatherItem.nextDays objectAtIndex:4];
+    }
+    
+    if (currentWeatherItem.weatherForecast.count){
+        detailView.dayTemp1.text = [currentWeatherItem.weatherForecast objectAtIndex:0];
+        detailView.dayTemp2.text = [currentWeatherItem.weatherForecast objectAtIndex:1];
+        detailView.dayTemp3.text = [currentWeatherItem.weatherForecast objectAtIndex:2];
+        detailView.dayTemp4.text = [currentWeatherItem.weatherForecast objectAtIndex:3];
+        detailView.dayTemp5.text = [currentWeatherItem.weatherForecast objectAtIndex:4];
+    }
+    
+    if (currentWeatherItem.weatherForecastConditionsImages.count){
+        detailView.dayImage1.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:0];
+        detailView.dayImage2.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:1];
+        detailView.dayImage3.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:2];
+        detailView.dayImage4.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:3];
+        detailView.dayImage5.image = [currentWeatherItem.weatherForecastConditionsImages objectAtIndex:4];
+    }
 }
 
--(void)tapRecognizedOnLargeRectangeView:(UITapGestureRecognizer *)recognizer
-{
+-(void)tapRecognizedOnLargeRectangeView:(UITapGestureRecognizer *)recognizer {
     [self toggleOpenAndClosedState];
 }
 
--(void)setIndexOfCurrentTempString:(int)index
-{
+-(void)setIndexOfCurrentTempString:(int)index {
     if (isChangingIndex == NO) return;
     if (isOpen) [self toggleOpenAndClosedState];
-    if (soundsEnabled) [[SoundManager sharedManager] playClankSound];
     
     // Animations
     [UIView animateWithDuration:0.4
@@ -244,8 +236,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 }
 
 // Remove top and bottom views to expose the current temperature view
-- (void)removeTopAndBottomViews
-{
+- (void)removeTopAndBottomViews {
     for (int i=0; i < bottomSmallRectangleViews.count; i++)
     {
         UIView *view = [bottomSmallRectangleViews objectAtIndex:i];
@@ -259,8 +250,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 }
 
 // Animates the top and bottom rectangles into view
-- (void)animateTopAndBottomViewsForIndex:(int)index
-{
+- (void)animateTopAndBottomViewsForIndex:(int)index {
     [UIView animateWithDuration:0.25
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseOut
@@ -273,8 +263,6 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                          drawerView.backgroundColor = [colorsArray objectAtIndex:index];
                      }
                      completion:^(BOOL finished){
-                         
-                         if (soundsEnabled) [[SoundManager sharedManager] playSwooshSound];
                          
                          [UIView animateWithDuration:0.4
                                                delay:0.0
@@ -337,17 +325,14 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 
 #pragma mark UIGestureRecognizer Delegate Methods
 
-- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch
-{
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     if ([touch.view isKindOfClass:[UIButton class]]) return NO;
-    
     return YES;
 }
 
 #pragma mark WeatherManager Delegate Methods
 
--(void)didRecieveAndParseNewWeatherItem:(WeatherItem*)item
-{
+-(void)didRecieveAndParseNewWeatherItem:(WeatherItem*)item {
     currentWeatherItem = item;
     isChangingIndex = YES;
     self.indexOfCurrentTempString = item.indexForWeatherMap;
@@ -356,15 +341,11 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     [self updateDetailView];
 }
 
--(void)toggleOpenAndClosedState
-{
-    if (indexOfCurrentTempString < 10)
-    {
-        if (isOpen)
-        {
+-(void)toggleOpenAndClosedState {
+    if (indexOfCurrentTempString < 10) {
+        if (isOpen) {
             isOpen = NO;
-            for (UIView *view in bottomSmallRectangleViews)
-            {
+            for (UIView *view in bottomSmallRectangleViews) {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
                                     options: UIViewAnimationOptionCurveEaseOut
@@ -391,10 +372,8 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             }
         }
     }
-    else if (indexOfCurrentTempString >= 10)
-    {
-        if (isOpen)
-        {
+    else if (indexOfCurrentTempString >= 10) {
+        if (isOpen) {
             isOpen = NO;
             [UIView animateWithDuration:0.5
                                   delay:0.0
@@ -405,8 +384,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                              }
                              completion:^(BOOL finished){
                              }];
-            for (UIView *view in topSmallRectangleViews)
-            {
+            for (UIView *view in topSmallRectangleViews) {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
                                     options: UIViewAnimationOptionCurveEaseOut
@@ -428,8 +406,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                              }
                              completion:^(BOOL finished){
                              }];
-            for (UIView *view in topSmallRectangleViews)
-            {
+            for (UIView *view in topSmallRectangleViews) {
                 [UIView animateWithDuration:0.5
                                       delay:0.0
                                     options: UIViewAnimationOptionCurveEaseOut
@@ -442,18 +419,6 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
             }
         }
     }
-}
-
-#pragma mark SettingsViewontroller Delegate Methods
-
--(void)turnSoundsOn
-{
-    soundsEnabled = YES;
-}
-
--(void)turnSoundsOff
-{
-    soundsEnabled = NO;
 }
 
 @end

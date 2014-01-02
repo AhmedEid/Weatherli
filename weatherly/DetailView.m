@@ -23,30 +23,9 @@
 
 @implementation DetailView
 
-@synthesize dayLabel1 = _dayLabel1;
-@synthesize dayLabel2 = _dayLabel2;
-@synthesize dayLabel3 = _dayLabel3;
-@synthesize dayLabel4 = _dayLabel4;
-@synthesize dayLabel5 = _dayLabel5;
-@synthesize dayImage1 = _dayImage1;
-@synthesize dayImage2 = _dayImage2;
-@synthesize dayImage3 = _dayImage3;
-@synthesize designedByLabel = _designedByLabel;
-@synthesize dayImage4 = _dayImage4;
-@synthesize dayImage5 = _dayImage5;
-@synthesize dayTemp1 = _dayTemp1;
-@synthesize dayTemp2 = _dayTemp2;
-@synthesize dayTemp3 = _dayTemp3;
-@synthesize dayTemp4 = _dayTemp4;
-@synthesize dayTemp5 = _dayTemp5;
-@synthesize madeWithLoveLabel = _madeWithLoveLabel;
-@synthesize item = _item;
-
--(id)initWithFrame:(CGRect)frame
-{
+-(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"DetailView"
                                                               owner:nil
                                                             options:nil];
@@ -59,19 +38,12 @@
     return self;
 }
 
--(id)initWithWeatherItem:(WeatherItem *)item andframe:(CGRect )frame
-{
+-(id)initWithWeatherItem:(WeatherItem *)item andframe:(CGRect )frame {
     self = [super initWithFrame:frame];
     if (self) {
-        // Init code here
         self.item = item;
     }
     return self;
-}
-
--(void)layoutSubviews
-{
-    [super layoutSubviews];
-}
+} 
 
 @end

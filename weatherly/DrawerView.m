@@ -31,11 +31,9 @@
 @synthesize windImageView;
 @synthesize windLabel;
 
--(id)initWithFrame:(CGRect)frame
-{
+-(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
-    if (self)
-    {
+    if (self) {
         NSArray *arrayOfViews = [[NSBundle mainBundle] loadNibNamed:@"DrawerView"
                                                               owner:nil
                                                             options:nil];

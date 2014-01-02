@@ -24,8 +24,7 @@
 
 @implementation WeatherItem (Parse)
 
-+(WeatherItem *)itemFromWeatherDictionary:(NSDictionary *)dict
-{
++(WeatherItem *)itemFromWeatherDictionary:(NSDictionary *)dict {
     WeatherItem *item = nil;
     
     item = [[WeatherItem alloc] init];
@@ -81,10 +80,7 @@
     return item;
 }
 
-
-+(NSString *)dayNameFromDateString:(NSString *)dateString
-{    
-    // Convert string to date object
++(NSString *)dayNameFromDateString:(NSString *)dateString {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSDate *date = [dateFormat dateFromString:dateString];  
@@ -117,8 +113,7 @@
 }
 
 
-+(int)indexForTemperature:(NSString *)temp
-{
++(int)indexForTemperature:(NSString *)temp {
     int temperatureInt = temp.intValue;
     
     if (temperatureInt <=8 && temperatureInt >=0)
@@ -164,8 +159,7 @@
     return 0;
 }
 
-+(NSString *)descriptionOfWeatherFromWeatherCode:(NSString *)weatherCode
-{
++(NSString *)descriptionOfWeatherFromWeatherCode:(NSString *)weatherCode {
     NSString *weatherDescription;
     
     switch (weatherCode.intValue) {
@@ -319,8 +313,7 @@
     return weatherDescription;
 }
 
-+(UIImage *)imageForWeatherCode:(NSString *)weatherCode
-{
++(UIImage *)imageForWeatherCode:(NSString *)weatherCode {
     UIImage *weatherImage = [[UIImage alloc] init];
     
     switch (weatherCode.intValue) {
@@ -473,6 +466,5 @@
     }
     return weatherImage;
 }
-
 
 @end

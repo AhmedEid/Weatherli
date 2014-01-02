@@ -21,8 +21,7 @@
 //
 #import "WeatherManager.h"
 
-@interface WeatherManager ()
-{
+@interface WeatherManager () {
     Reachability *internetReachable;
     Reachability *hostReachable;
     LocationGetter *locationGetter;
@@ -31,12 +30,9 @@
 
 @implementation WeatherManager
 
-@synthesize delegate = _delegate;
-
 # pragma mark - Singleton Methods
 
-+ (id)sharedManager
-{
++ (id)sharedManager {
     static WeatherManager *_sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -45,22 +41,9 @@
     return _sharedManager;
 }
 
-- (id)init {
-    if (self = [super init]) {
-        // Init code here
-        
-    }
-    return self;
-}
-
-- (void)dealloc {
-    // Should never be called, but just here for clarity really.
-}
-
 # pragma mark - Instance Methods
 
--(void)startUpdatingLocation
-{
+-(void)startUpdatingLocation {
     locationGetter = [LocationGetter sharedManager];
     locationGetter.delegate = self;
     [locationGetter startUpdates]; 
@@ -112,15 +95,10 @@
         if (placemarks)
         {
             MKPlacemark *placemark = [placemarks objectAtIndex:0];
-            
             NSString *zip = [placemark.addressDictionary objectForKey:@"ZIP"];
-
-            NSString *queryString = [NSString stringWithFormat:@"http://free.worldweatheronline.com/feed/weather.ashx?q=%@&format=json&num_of_days=5&key=c0901b281c095607121605", zip];
-            
-            
+            NSString *queryString = [NSString stringWithFormat:@"http://free.worldweatheronline.com/feed/weather.ashx?q=%@&format=json&num_of_days=5&key=urwds2jpg3uytmbygq47cmgn", zip];
             [self executeFetchForQueryString:queryString];
-        } else if (error)
-        {
+        } else if (error) {
             NSLog(@"Error getting zipcode from geocoder: %@", error.localizedDescription);
         }
     }];
@@ -128,8 +106,7 @@
 
 #pragma mark - Newtorking Methods 
 
--(void)executeFetchForQueryString:(NSString *)queryString
-{    
+-(void)executeFetchForQueryString:(NSString *)queryString {
     queryString = [queryString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     
     //Create JSONData using the string 
@@ -142,8 +119,7 @@
                                                             options:kNilOptions
                                                               error:&error];    
     WeatherItem *item = [WeatherItem itemFromWeatherDictionary:results];
-    if (self.delegate)
-    {        
+    if (self.delegate) {
         //Save in NSUserDefaults
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:item];
@@ -153,10 +129,10 @@
         [self.delegate didRecieveAndParseNewWeatherItem:item];
     }
 }
+
+#pragma mark - Helper methods
                                
-// TODO: TO BE DELETED
--(int)indexForTemperature:(NSString *)temp
-    {
+-(int)indexForTemperature:(NSString *)temp {
         int temperatureInt = temp.intValue;
         
         if (temperatureInt <=8 && temperatureInt >=0)
@@ -201,6 +177,5 @@
         }
         return 0;
     }                      
-
 
 @end

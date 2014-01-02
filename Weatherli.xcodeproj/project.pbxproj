@@ -49,11 +49,8 @@
 		9E014ADD1565726700358260 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E014ADC1565726700358260 /* SystemConfiguration.framework */; };
 		9E2E31871563E609006B04DA /* LocationGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2E31861563E609006B04DA /* LocationGetter.m */; };
 		9E6EA6471563D3C700902D1B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6EA6461563D3C700902D1B /* CoreLocation.framework */; };
-		9E9BFACF1566900E00E0F10A /* clank.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BFACE1566900E00E0F10A /* clank.mp3 */; };
 		9E9BFAD21566905000E0F10A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9BFAD11566905000E0F10A /* AVFoundation.framework */; };
 		9E9BFAD41566905700E0F10A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9BFAD31566905700E0F10A /* AudioToolbox.framework */; };
-		9E9BFAD71566907000E0F10A /* SoundManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E9BFAD61566907000E0F10A /* SoundManager.m */; };
-		9E9BFAD91566933300E0F10A /* swoosh.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 9E9BFAD81566933300E0F10A /* swoosh.mp3 */; };
 		9E9F245415616B56007B733E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9F245315616B56007B733E /* UIKit.framework */; };
 		9E9F245615616B56007B733E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9F245515616B56007B733E /* Foundation.framework */; };
 		9E9F245815616B56007B733E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9F245715616B56007B733E /* CoreGraphics.framework */; };
@@ -121,12 +118,8 @@
 		9E2E31851563E609006B04DA /* LocationGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationGetter.h; sourceTree = "<group>"; };
 		9E2E31861563E609006B04DA /* LocationGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationGetter.m; sourceTree = "<group>"; };
 		9E6EA6461563D3C700902D1B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		9E9BFACE1566900E00E0F10A /* clank.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = clank.mp3; sourceTree = "<group>"; };
 		9E9BFAD11566905000E0F10A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9E9BFAD31566905700E0F10A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		9E9BFAD51566907000E0F10A /* SoundManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundManager.h; sourceTree = "<group>"; };
-		9E9BFAD61566907000E0F10A /* SoundManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundManager.m; sourceTree = "<group>"; };
-		9E9BFAD81566933300E0F10A /* swoosh.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = swoosh.mp3; sourceTree = "<group>"; };
 		9E9F244F15616B56007B733E /* Weatherli.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weatherli.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E9F245315616B56007B733E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9E9F245515616B56007B733E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -182,8 +175,6 @@
 		9E014ABE15653DC000358260 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9E9BFACE1566900E00E0F10A /* clank.mp3 */,
-				9E9BFAD81566933300E0F10A /* swoosh.mp3 */,
 				9E014AD8156570B000358260 /* Reachability.h */,
 				9E014AD9156570B000358260 /* Reachability.m */,
 				9ECF1F981562DC9300961C3B /* foobar.ttf */,
@@ -303,8 +294,6 @@
 			children = (
 				9E2E31851563E609006B04DA /* LocationGetter.h */,
 				9E2E31861563E609006B04DA /* LocationGetter.m */,
-				9E9BFAD51566907000E0F10A /* SoundManager.h */,
-				9E9BFAD61566907000E0F10A /* SoundManager.m */,
 				9E9F248015617AD8007B733E /* WeatherManager.h */,
 				9E9F248115617AD8007B733E /* WeatherManager.m */,
 				9EA017FC15640D1F003AE7EF /* WeatherItem+Parse.h */,
@@ -431,8 +420,6 @@
 				9E014ACB15655EC700358260 /* icon57.png in Resources */,
 				9E014ACD15655F8600358260 /* Default.png in Resources */,
 				9E014ACF15655F8C00358260 /* Default@2x.png in Resources */,
-				9E9BFACF1566900E00E0F10A /* clank.mp3 in Resources */,
-				9E9BFAD91566933300E0F10A /* swoosh.mp3 in Resources */,
 				D452BABB170B6F4900B415CF /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -454,7 +441,6 @@
 				9EA017FE15640D1F003AE7EF /* WeatherItem+Parse.m in Sources */,
 				9EB67E6D1565233D00E954C6 /* DrawerView.m in Sources */,
 				9E014ADA156570B000358260 /* Reachability.m in Sources */,
-				9E9BFAD71566907000E0F10A /* SoundManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

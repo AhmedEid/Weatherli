@@ -22,8 +22,7 @@
 
 #import "LocationGetter.h"
 
-@interface LocationGetter ()
-{
+@interface LocationGetter () {
     CLLocationManager *locationManager;
     BOOL didUpdate;
 }
@@ -31,12 +30,9 @@
 
 @implementation LocationGetter
 
-@synthesize delegate = _delegate;
-
 # pragma mark - Singleton Methods
 
-+ (id)sharedManager
-{
++ (id)sharedManager {
     static LocationGetter *_sharedManager;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -47,41 +43,30 @@
 
 - (id)init {
     if (self = [super init]) {
-        // Init code here
         didUpdate = NO;
     }
     return self;
 }
 
-- (void)dealloc {
-    // Should never be called, but just here for clarity really.
-}
-
-- (void)startUpdates
-{    
+- (void)startUpdates {
     if (locationManager == nil)
         locationManager = [[CLLocationManager alloc] init];
     
     locationManager.delegate = self;
-    
-    // You have some options here, though higher accuracy takes longer to resolve.
-    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;  
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     [locationManager startUpdatingLocation];    
 }
 
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error
-{
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your location could not be determined. Please try again later" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
     [alert show];     
 }
 
 // Delegate method from the CLLocationManagerDelegate protocol.
-- (void)locationManager:(CLLocationManager *)manage didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
-{
+- (void)locationManager:(CLLocationManager *)manage didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
         if (didUpdate) return;
     
         didUpdate = YES;
-    
         // Disable future updates to save power.
         [locationManager stopUpdatingLocation];
 	        
