@@ -9,7 +9,7 @@
 #import "WeatherViewController.h"
 
 CGFloat  kheightOfLargeRectangleScrollViewClosed = 150;
-CGFloat  kheightOfSmallRectangles = 27;
+CGFloat  kheightOfSmallRectangles = 31;
 CGFloat  kOffsetForAnimationWhenTapped = 50;
 CGFloat  kFontSizeForDetailViewTitleLabels = 30;
 CGFloat  kFontSizeForDetailViewTempLabel = 35;
@@ -59,6 +59,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UIColorFromRGB(0x0068b4);
     
     // Get a reference to the WeatherManager singleton
     weatherManager = [WeatherManager sharedManager];
@@ -220,7 +221,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
     if (isOpen) [self toggleOpenAndClosedState];
     
     // Animations
-    [UIView animateWithDuration:0.4
+    [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -251,7 +252,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
 
 // Animates the top and bottom rectangles into view
 - (void)animateTopAndBottomViewsForIndex:(int)index {
-    [UIView animateWithDuration:0.25
+    [UIView animateWithDuration:0.5
                           delay:0.0
                         options: UIViewAnimationOptionCurveEaseOut
                      animations:^{
@@ -264,7 +265,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                      }
                      completion:^(BOOL finished){
                          
-                         [UIView animateWithDuration:0.4
+                         [UIView animateWithDuration:0.5
                                                delay:0.0
                                              options: UIViewAnimationOptionCurveEaseIn
                                           animations:^{
@@ -283,7 +284,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                                   [self.view addSubview:view];
                                                   [topSmallRectangleViews addObject:view];
                                                   
-                                                  [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                  [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                                                       
                                                       [view setFrame:CGRectMake(0, y-kheightOfSmallRectangles, 320, kheightOfSmallRectangles)];
                                                       
@@ -307,7 +308,7 @@ CGFloat  kFontSizeForDrawerViewLabels = 30;
                                                   y+= view.frame.size.height;
                                                   [self.view addSubview:view];
                                                   [bottomSmallRectangleViews addObject:view];
-                                                  [UIView animateWithDuration:0.1 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+                                                  [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
                                                       
                                                       [view setFrame:CGRectMake(0, y-kOffsetForAnimationWhenTapped - kheightOfSmallRectangles, 320, kheightOfSmallRectangles)];
                                                       

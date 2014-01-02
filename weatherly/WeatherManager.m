@@ -96,7 +96,7 @@
         {
             MKPlacemark *placemark = [placemarks objectAtIndex:0];
             NSString *zip = [placemark.addressDictionary objectForKey:@"ZIP"];
-            NSString *queryString = [NSString stringWithFormat:@"http://free.worldweatheronline.com/feed/weather.ashx?q=%@&format=json&num_of_days=5&key=urwds2jpg3uytmbygq47cmgn", zip];
+            NSString *queryString = [NSString stringWithFormat:@"http://api.worldweatheronline.com/free/v1/weather.ashx?q=%@&format=json&num_of_days=5&key=urwds2jpg3uytmbygq47cmgn", zip];
             [self executeFetchForQueryString:queryString];
         } else if (error) {
             NSLog(@"Error getting zipcode from geocoder: %@", error.localizedDescription);
