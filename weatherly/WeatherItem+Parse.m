@@ -1,24 +1,25 @@
 //
 //  WeatherItem+Parse.m
-//  weatherly
+//  Weatherli
 //
 //  Created by Ahmed Eid on 5/14/12.
 //  Copyright (c) 2012 Ahmed Eid. All rights reserved.
-//This file is part of Weatherli.
+//  This file is part of Weatherli.
 //
-//Weatherli is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation, either version 3 of the License, or
-//(at your option) any later version.
+//  Weatherli is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
-//Foobar is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+//  Weatherli is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-//You should have received a copy of the GNU General Public License
-//along with Weatherli.  If not, see <http://www.gnu.org/licenses/>.
+//  You should have received a copy of the GNU General Public License
+//  along with Weatherli.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 
 #import "WeatherItem+Parse.h"
 
@@ -48,8 +49,7 @@
     
     NSInteger i = 0;
 
-    for (NSDictionary *dict in forecast)
-    {        
+    for (NSDictionary *dict in forecast) {
         NSString *day = [self dayNameFromDateString:[dict objectForKey:@"date"]];
         [mutableNextDaysArray insertObject:day atIndex:i];
 
@@ -80,86 +80,66 @@
     return item;
 }
 
-+(NSString *)dayNameFromDateString:(NSString *)dateString {
++ (NSString *)dayNameFromDateString:(NSString *)dateString {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd"];
     NSDate *date = [dateFormat dateFromString:dateString];  
     
     NSCalendar* cal = [NSCalendar currentCalendar];
     NSDateComponents* comp = [cal components:NSWeekdayCalendarUnit fromDate:date];
-    if (comp.weekday ==1)
-    {
+    if (comp.weekday ==1) {
         return @"Mon";
-    } else if (comp.weekday ==2)
-    {
+    } else if (comp.weekday ==2) {
         return @"Tue";
-    } else if (comp.weekday ==3)
-    {
+    } else if (comp.weekday ==3) {
         return @"Wed";
-    } else if (comp.weekday ==4)
-    {
+    } else if (comp.weekday ==4) {
         return @"Thu";
-    } else if (comp.weekday ==5)
-    {
+    } else if (comp.weekday ==5) {
         return @"Fri";
-    } else if (comp.weekday ==6)
-    {
+    } else if (comp.weekday ==6) {
         return @"Sat";
-    } else if (comp.weekday ==7)
-    {
+    } else if (comp.weekday ==7) {
         return @"Sun";
     } 
     return nil;
 }
 
 
-+(int)indexForTemperature:(NSString *)temp {
++ (int)indexForTemperature:(NSString *)temp {
     int temperatureInt = temp.intValue;
     
-    if (temperatureInt <=8 && temperatureInt >=0)
-    {
+    if (temperatureInt <=8 && temperatureInt >=0) {
         return 12;
-    } else if (temperatureInt <=17 && temperatureInt >=9)
-    {
+    } else if (temperatureInt <=17 && temperatureInt >=9) {
         return 11;
-    } else if (temperatureInt <=26 && temperatureInt >=18)
-    {
+    } else if (temperatureInt <=26 && temperatureInt >=18) {
         return 10;
-    } else if (temperatureInt <=35 && temperatureInt >=27)
-    {
+    } else if (temperatureInt <=35 && temperatureInt >=27) {
         return 9;
-    } else if (temperatureInt <=44 && temperatureInt >=36)
-    {
+    } else if (temperatureInt <=44 && temperatureInt >=36) {
         return 8;
-    } else if (temperatureInt <=53 && temperatureInt >=45)
-    {
+    } else if (temperatureInt <=53 && temperatureInt >=45) {
         return 7;
-    } else if (temperatureInt <=62 && temperatureInt >=54)
-    {
+    } else if (temperatureInt <=62 && temperatureInt >=54) {
         return 6;
-    } else if (temperatureInt <=71 && temperatureInt >=63)
-    {
+    } else if (temperatureInt <=71 && temperatureInt >=63) {
         return 5;
-    } else if (temperatureInt <=80 && temperatureInt >=72)
-    {
+    } else if (temperatureInt <=80 && temperatureInt >=72) {
         return 4;
-    } else if (temperatureInt <=89 && temperatureInt >=81)
-    {
+    } else if (temperatureInt <=89 && temperatureInt >=81) {
         return 3;
-    } else if (temperatureInt <=97 && temperatureInt >=90)
-    {
+    } else if (temperatureInt <=97 && temperatureInt >=90) {
         return 2;
-    } else if (temperatureInt <=100 && temperatureInt >=98)
-    {
+    } else if (temperatureInt <=100 && temperatureInt >=98) {
         return 1;
-    } else if (temperatureInt <=200 && temperatureInt >=101)
-    {
+    } else if (temperatureInt <=200 && temperatureInt >=101) {
         return 0;
     }
     return 0;
 }
 
-+(NSString *)descriptionOfWeatherFromWeatherCode:(NSString *)weatherCode {
++ (NSString *)descriptionOfWeatherFromWeatherCode:(NSString *)weatherCode {
     NSString *weatherDescription;
     
     switch (weatherCode.intValue) {
@@ -313,7 +293,7 @@
     return weatherDescription;
 }
 
-+(UIImage *)imageForWeatherCode:(NSString *)weatherCode {
++ (UIImage *)imageForWeatherCode:(NSString *)weatherCode {
     UIImage *weatherImage = [[UIImage alloc] init];
     
     switch (weatherCode.intValue) {

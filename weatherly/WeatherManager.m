@@ -1,31 +1,29 @@
 //
 //  WeatherManager.m
-//  weatherly
+//  Weatherli
 //
 //  Created by Ahmed Eid on 5/14/12.
 //  Copyright (c) 2012 Ahmed Eid. All rights reserved.
-//This file is part of Weatherli.
+//  This file is part of Weatherli.
 //
-//Weatherli is free software: you can redistribute it and/or modify
-//it under the terms of the GNU General Public License as published by
-//the Free Software Foundation, either version 3 of the License, or
-//(at your option) any later version.
+//  Weatherli is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
 //
-//Foobar is distributed in the hope that it will be useful,
-//but WITHOUT ANY WARRANTY; without even the implied warranty of
-//MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//GNU General Public License for more details.
+//  Weatherli is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
 //
-//You should have received a copy of the GNU General Public License
-//along with Weatherli.  If not, see <http://www.gnu.org/licenses/>.
+//  You should have received a copy of the GNU General Public License
+//  along with Weatherli.  If not, see <http://www.gnu.org/licenses/>.
 //
+
 #import "WeatherManager.h"
 
-@interface WeatherManager () {
-    Reachability *internetReachable;
-    Reachability *hostReachable;
-    LocationGetter *locationGetter;
-}
+@interface WeatherManager ()
+@property (nonatomic, strong) LocationManager *locationManager;
 @end
 
 @implementation WeatherManager
@@ -41,21 +39,17 @@
     return _sharedManager;
 }
 
-# pragma mark - Instance Methods
-
 -(void)startUpdatingLocation {
-    locationGetter = [LocationGetter sharedManager];
-    locationGetter.delegate = self;
-    [locationGetter startUpdates]; 
+    self.locationManager = [LocationManager sharedManager];
+    self.locationManager.delegate = self;
+    [self.locationManager startUpdates];
 }
 
--(WeatherItem *)currentWeatherItem
-{
+- (WeatherItem *)currentWeatherItem {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data = [defaults objectForKey:@"currentItem"];
     
-    if (!data)
-    {
+    if (!data) {
         NSArray *forecast = [NSArray arrayWithObjects:@"66",@"76",@"56",@"94",@"32", nil];
         
         NSArray *forecastConditions = [NSArray arrayWithObjects:@"Sunny",@"Rainy",@"Sunny",@"Cloudy",@"Heavy Rain", nil];
@@ -84,16 +78,15 @@
     }
 }
 
-#pragma mark - LocationDelegateMethods 
+#pragma mark - Location Delegate Methods 
 
-- (void)newPhysicalLocation:(CLLocation *)location;
-{   
-    //Get the zipcode using CLGeocoder
+- (void)didLocateNewUserLocation:(CLLocation *)location; {
+    
+    //Get the locatio  zipcode using CLGeocoder
     CLGeocoder *geoCoder = [[CLGeocoder alloc] init];
     [geoCoder reverseGeocodeLocation:location completionHandler:
     ^(NSArray *placemarks, NSError *error) {
-        if (placemarks)
-        {
+        if (placemarks) {
             MKPlacemark *placemark = [placemarks objectAtIndex:0];
             NSString *zip = [placemark.addressDictionary objectForKey:@"ZIP"];
             NSString *queryString = [NSString stringWithFormat:@"http://api.worldweatheronline.com/free/v1/weather.ashx?q=%@&format=json&num_of_days=5&key=urwds2jpg3uytmbygq47cmgn", zip];
@@ -119,6 +112,7 @@
                                                             options:kNilOptions
                                                               error:&error];    
     WeatherItem *item = [WeatherItem itemFromWeatherDictionary:results];
+    
     if (self.delegate) {
         //Save in NSUserDefaults
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

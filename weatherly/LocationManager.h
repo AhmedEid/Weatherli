@@ -1,5 +1,5 @@
 //
-//  DrawerView.h
+//  LocationGetter.h
 //  Weatherli
 //
 //  Created by Ahmed Eid on 5/14/12.
@@ -20,15 +20,18 @@
 //  along with Weatherli.  If not, see <http://www.gnu.org/licenses/>.
 //
 
+
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
-@interface DrawerView : UIView
+@protocol LocationManagerDelegate <NSObject>
+- (void) didLocateNewUserLocation:(CLLocation *)location;
+@end
 
-@property (weak, nonatomic) IBOutlet UIImageView *humidityImageView;
-@property (weak, nonatomic) IBOutlet UILabel *humidityLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *precipitationImageView;
-@property (weak, nonatomic) IBOutlet UILabel *precipitationLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *windImageView;
-@property (weak, nonatomic) IBOutlet UILabel *windLabel;
+@interface LocationManager : NSObject <CLLocationManagerDelegate>
+@property (nonatomic, assign) id <LocationManagerDelegate>delegate;
+
++ (id)sharedManager;
+- (void)startUpdates;
 
 @end

@@ -47,7 +47,7 @@
 		9E014ACF15655F8C00358260 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9E014ACE15655F8C00358260 /* Default@2x.png */; };
 		9E014ADA156570B000358260 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E014AD9156570B000358260 /* Reachability.m */; };
 		9E014ADD1565726700358260 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E014ADC1565726700358260 /* SystemConfiguration.framework */; };
-		9E2E31871563E609006B04DA /* LocationGetter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2E31861563E609006B04DA /* LocationGetter.m */; };
+		9E2E31871563E609006B04DA /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E2E31861563E609006B04DA /* LocationManager.m */; };
 		9E6EA6471563D3C700902D1B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E6EA6461563D3C700902D1B /* CoreLocation.framework */; };
 		9E9BFAD21566905000E0F10A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9BFAD11566905000E0F10A /* AVFoundation.framework */; };
 		9E9BFAD41566905700E0F10A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E9BFAD31566905700E0F10A /* AudioToolbox.framework */; };
@@ -115,8 +115,8 @@
 		9E014AD8156570B000358260 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		9E014AD9156570B000358260 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		9E014ADC1565726700358260 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		9E2E31851563E609006B04DA /* LocationGetter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationGetter.h; sourceTree = "<group>"; };
-		9E2E31861563E609006B04DA /* LocationGetter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationGetter.m; sourceTree = "<group>"; };
+		9E2E31851563E609006B04DA /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
+		9E2E31861563E609006B04DA /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		9E6EA6461563D3C700902D1B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9E9BFAD11566905000E0F10A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		9E9BFAD31566905700E0F10A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -292,8 +292,8 @@
 		C70B06991561F8A4001D2C81 /* Models & Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9E2E31851563E609006B04DA /* LocationGetter.h */,
-				9E2E31861563E609006B04DA /* LocationGetter.m */,
+				9E2E31851563E609006B04DA /* LocationManager.h */,
+				9E2E31861563E609006B04DA /* LocationManager.m */,
 				9E9F248015617AD8007B733E /* WeatherManager.h */,
 				9E9F248115617AD8007B733E /* WeatherManager.m */,
 				9EA017FC15640D1F003AE7EF /* WeatherItem+Parse.h */,
@@ -437,7 +437,7 @@
 				9E9F248515617AF0007B733E /* WeatherItem.m in Sources */,
 				C74741C91561D8570072B393 /* WeatherViewController.m in Sources */,
 				9ECF1FA11562E16300961C3B /* DetailView.m in Sources */,
-				9E2E31871563E609006B04DA /* LocationGetter.m in Sources */,
+				9E2E31871563E609006B04DA /* LocationManager.m in Sources */,
 				9EA017FE15640D1F003AE7EF /* WeatherItem+Parse.m in Sources */,
 				9EB67E6D1565233D00E954C6 /* DrawerView.m in Sources */,
 				9E014ADA156570B000358260 /* Reachability.m in Sources */,
