@@ -30,5 +30,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *precipitationLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *windImageView;
 @property (weak, nonatomic) IBOutlet UILabel *windLabel;
+@property (weak, nonatomic) IBOutlet UILabel *currentTempLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *currentTempImageView;
 
 @end

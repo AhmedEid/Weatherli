@@ -44,8 +44,4 @@
 @property (weak, nonatomic) IBOutlet UILabel *dayTemp5;
 @property (weak, nonatomic) IBOutlet UILabel *madeWithLoveLabel;
 
-@property (nonatomic, strong) WeatherItem *item;
-
--(id)initWithWeatherItem:(WeatherItem *)item andframe:(CGRect )frame;
-
 @end

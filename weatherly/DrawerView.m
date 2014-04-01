@@ -23,14 +23,9 @@
 
 #import "DrawerView.h"
 
-@implementation DrawerView
+CGFloat  kFontSizeForDrawerViewLabels = 30;
 
-@synthesize humidityImageView;
-@synthesize humidityLabel;
-@synthesize precipitationImageView;
-@synthesize precipitationLabel;
-@synthesize windImageView;
-@synthesize windLabel;
+@implementation DrawerView
 
 -(id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -45,6 +40,22 @@
         self = newView;
     }
     return self;
+}
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.humidityLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
+    self.precipitationLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
+    self.windLabel.font = [UIFont fontWithName:@"steelfish" size:kFontSizeForDrawerViewLabels];
+    self.currentTempLabel.font = [UIFont fontWithName:@"steelfish" size:140];
+    
+    self.currentTempLabel.text = @"100°";
+    self.currentTempLabel.backgroundColor = [UIColor clearColor];
+    self.currentTempLabel.textColor = [UIColor whiteColor];
+    [self.currentTempImageView setImage:[UIImage imageNamed:@"sun.png"]];
+
+
 }
 
 @end
